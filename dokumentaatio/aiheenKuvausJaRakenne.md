@@ -6,6 +6,8 @@ Peli toimii normaalin shakin tavoin, jossa pelaajat vuorotellen liikuttavat peli
 
 Tekoäly, jota vastaan voi valita pelata kaverin sijaan, toteutetaan minimax-algoritmia käyttäen.
 
+---
+
 **Käyttäjät:** pelaaja(t) (1 tai 2)
 
 **Kaikkien käyttäjien toiminnot:**
