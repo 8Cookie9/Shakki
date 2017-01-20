@@ -1,4 +1,5 @@
 **Aihe: Shakki**
+
 Shakkipeli, jota pystyy pelaamaan joko kaveria tai tekoälyä vastaan.
 
 Peli toimii normaalin shakin tavoin, jossa pelaajat vuorotellen liikuttavat pelinappuloita. Omalla vuorollaan pelaaja voi klikata nappulaa nähdäkseen mahdolliset siirrot, jotka kyseisellä nappulalla voi tehdä.
