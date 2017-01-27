@@ -13,3 +13,7 @@ Tekoäly, jota vastaan voi valita pelata kaverin sijaan, toteutetaan minimax-alg
 
 * Mahdollisten siirtojen näkeminen
 * Nappuloiden liikuttaminen omalla vuorollaan
+
+**Luokkakaavio**
+
+![Luokkakaavio](ClassDiagram.png)
