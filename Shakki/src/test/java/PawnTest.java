@@ -13,7 +13,7 @@ public class PawnTest {
     
     @Before
     public void setUp() {
-        board = new Board();
+        board = new Board(false);
         pawn = new Pawn(board.board(), 0, 1, Colour.WHITE);
         
     }
@@ -25,28 +25,60 @@ public class PawnTest {
     
     @Test
     public void eiVoiLiikkuaToisenPaalleA(){
-        board.addPiece(new Pawn(board.board(), 0, 2, Colour.BLACK), 0, 2);
+        board.addPiece(new Pawn(board.board(), 0, 2, Colour.BLACK));
         assertTrue(pawn.regularMoves().isEmpty());
     }
     
     @Test
     public void eiVoiLiikkuaToisenPaalleB(){
-        board.addPiece(new Pawn(board.board(), 0, 3, Colour.BLACK), 0, 3);
+        board.addPiece(new Pawn(board.board(), 0, 3, Colour.BLACK));
         assertTrue(pawn.regularMoves().size()==1);
     }
     
     @Test
     public void eiVoiLiikkuaKentaltaUlosYlos(){
         Pawn p=new Pawn(board.board(), 0, 7, Colour.WHITE);
-        board.addPiece(p, 0, 7);
+        board.addPiece(p);
         assertTrue(pawn.regularMoves().isEmpty());
     }
     
     @Test
     public void eiVoiLiikkuaKentaltaUlosAlas(){
         Pawn p=new Pawn(board.board(), 0, 0, Colour.BLACK);
-        board.addPiece(p, 0, 0);
+        board.addPiece(p);
         assertTrue(pawn.regularMoves().isEmpty());
     }
     
+    @Test
+    public void voiKaapata(){
+        Pawn p=new Pawn(board.board(), 1, 2, Colour.BLACK);
+        board.addPiece(p);
+        assertTrue(!pawn.capture().isEmpty());
+    }
+    
+    @Test
+    public void eiVoiKaapata(){
+        assertTrue(pawn.capture().isEmpty());
+    }
+    
+    @Test
+    public void kaikkiLiikkeetToimiiKaappaus(){
+        Pawn p=new Pawn(board.board(), 1, 2, Colour.BLACK);
+        board.addPiece(p);
+        assertTrue(pawn.moves().contains(new Integer[]{1,2}));
+    }
+    
+    @Test
+    public void kaikkiLiikkeetToimiiEiVoiLiikkua(){
+        Pawn p=new Pawn(board.board(), 0, 2, Colour.BLACK);
+        board.addPiece(p);
+        assertTrue(pawn.moves().isEmpty());
+    }
+    
+    @Test
+    public void kaikkiLiikkeetToimiiKaappausEiVoiLiikkuaUlosKentalta(){
+        Pawn p=new Pawn(board.board(), 0, 7, Colour.BLACK);
+        board.addPiece(p);
+        assertTrue(p.moves().isEmpty());
+    }
 }

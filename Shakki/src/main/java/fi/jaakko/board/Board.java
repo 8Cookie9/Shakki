@@ -6,9 +6,11 @@ public class Board {
 
     private Piece[][] board;
 
-    public Board() {
+    public Board(boolean b) {
         this.board = new Piece[8][8];
-        this.setup();
+        if(b){
+            this.setup();
+        }
     }
 
     private void setup() {
@@ -19,9 +21,9 @@ public class Board {
         return this.board;
     }
     
-    public void addPiece(Piece p, int x, int y){
-        if(this.board[x][y]==null){
-            this.board[x][y]=p;
+    public void addPiece(Piece p){
+        if(this.board[p.getX()][p.getY()]==null){
+            this.board[p.getX()][p.getY()]=p;
         }
     }
 }
