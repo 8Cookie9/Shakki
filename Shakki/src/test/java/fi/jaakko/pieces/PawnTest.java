@@ -1,3 +1,5 @@
+package fi.jaakko.pieces;
+
 import fi.jaakko.board.Board;
 import fi.jaakko.pieces.Colour;
 import fi.jaakko.pieces.Pawn;
