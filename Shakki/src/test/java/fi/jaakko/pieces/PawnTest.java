@@ -3,15 +3,22 @@ package fi.jaakko.pieces;
 import fi.jaakko.board.Board;
 import fi.jaakko.pieces.Colour;
 import fi.jaakko.pieces.Pawn;
+import java.util.List;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 
 public class PawnTest {
     
+    public PawnTest(){
+    }
+    
     private Board board;
     private Pawn pawn;
-    
+
     
     @Before
     public void setUp() {
@@ -19,6 +26,7 @@ public class PawnTest {
         pawn = new Pawn(board.board(), 0, 1, Colour.WHITE);
         
     }
+
     
     @Test
     public void voiLiikkuaTyhjaan(){
