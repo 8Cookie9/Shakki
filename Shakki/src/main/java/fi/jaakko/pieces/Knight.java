@@ -37,4 +37,9 @@ public class Knight extends Piece {
     public List<Integer[]> regularMoves() {
         return this.mv.stream().filter(i -> super.getBoard()[i[0]][i[1]]==null).collect(Collectors.toList());
     }
+    
+    @Override
+    public String toString(){
+        return "Knight";
+    }
 }

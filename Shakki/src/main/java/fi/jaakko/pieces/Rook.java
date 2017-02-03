@@ -28,4 +28,9 @@ public class Rook extends Piece {
         
         return moves;
     }
+    
+    @Override
+    public String toString(){
+        return "Rook";
+    }
 }
