@@ -5,32 +5,32 @@ import java.util.List;
 
 public class Queen extends Piece {
 
-    public Queen(Piece[][] board, int x, int y, Colour c) {
+    public Queen(Piece[][] board, final int x, final int y, final Colour c) {
         super(board, x, y, c);
     }
 
-    public List<Integer[]> moves() {
-        ArrayList<Integer[]> moves = new ArrayList<>();
+    @Override
+    public List<int[]> moves() {
+        ArrayList<int[]> moves = new ArrayList<>();
         moves.addAll(this.regularMoves());
         moves.addAll(this.capture());
         return moves;
     }
 
-
-    public List<Integer[]> capture() {
-        ArrayList<Integer[]> moves = new ArrayList<>();
+    public List<int[]> capture() {
+        ArrayList<int[]> moves = new ArrayList<>();
         //lisätään 
         return moves;
     }
 
-    public List<Integer[]> regularMoves() {
-        ArrayList<Integer[]> moves = new ArrayList<>();
-        
+    public List<int[]> regularMoves() {
+        ArrayList<int[]> moves = new ArrayList<>();
+
         return moves;
     }
-    
+
     @Override
-    public String toString(){
-        return "Queen";
+    public String toString() {
+        return "[Queen ]";
     }
 }

@@ -1,94 +1,79 @@
 package fi.jaakko.pieces;
 
 import fi.jaakko.board.Board;
-import fi.jaakko.pieces.Colour;
-import fi.jaakko.pieces.Pawn;
-import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.BeforeClass;
 
 public class PawnTest {
-    
-    public PawnTest(){
+
+    public PawnTest() {
     }
-    
+
     private Board board;
     private Pawn pawn;
 
-    
     @Before
     public void setUp() {
         board = new Board(false);
         pawn = new Pawn(board.board(), 0, 1, Colour.WHITE);
-        
+
     }
 
-    
     @Test
-    public void voiLiikkuaTyhjaan(){
-        assertTrue(pawn.regularMoves().contains(new Integer[]{0,2}));
+    public void voiLiikkuaTyhjaan() {
+        assertTrue(pawn.moves().stream().anyMatch(i -> i[0] == 0 && i[1] == 2));
     }
-    
+
     @Test
-    public void eiVoiLiikkuaToisenPaalleA(){
+    public void eiVoiLiikkuaToisenPaalleA() {
         board.addPiece(new Pawn(board.board(), 0, 2, Colour.BLACK));
-        assertTrue(pawn.regularMoves().isEmpty());
+        assertTrue(pawn.moves().isEmpty());
     }
-    
+
     @Test
-    public void eiVoiLiikkuaToisenPaalleB(){
+    public void eiVoiLiikkuaToisenPaalleB() {
         board.addPiece(new Pawn(board.board(), 0, 3, Colour.BLACK));
-        assertTrue(pawn.regularMoves().size()==1);
+        assertTrue(!pawn.moves().stream().anyMatch(i -> i[0] == 0 && i[1] == 3));
     }
-    
+
     @Test
-    public void eiVoiLiikkuaKentaltaUlosYlos(){
-        Pawn p=new Pawn(board.board(), 0, 7, Colour.WHITE);
+    public void eiVoiLiikkuaKentaltaUlosYlos() {
+        Pawn p = new Pawn(board.board(), 3, 7, Colour.WHITE);
         board.addPiece(p);
-        assertTrue(pawn.regularMoves().isEmpty());
+        assertTrue(p.moves().isEmpty());
     }
-    
+
     @Test
-    public void eiVoiLiikkuaKentaltaUlosAlas(){
-        Pawn p=new Pawn(board.board(), 0, 0, Colour.BLACK);
+    public void eiVoiLiikkuaKentaltaUlosAlas() {
+        Pawn p = new Pawn(board.board(), 3, 0, Colour.BLACK);
         board.addPiece(p);
-        assertTrue(pawn.regularMoves().isEmpty());
+        assertTrue(p.moves().isEmpty());
     }
-    
+
     @Test
-    public void voiKaapata(){
-        Pawn p=new Pawn(board.board(), 1, 2, Colour.BLACK);
+    public void voiKaapata() {
+        Pawn p = new Pawn(board.board(), 1, 2, Colour.BLACK);
         board.addPiece(p);
         assertTrue(!pawn.capture().isEmpty());
     }
-    
+
     @Test
-    public void eiVoiKaapata(){
+    public void eiVoiKaapata() {
         assertTrue(pawn.capture().isEmpty());
     }
-    
+
     @Test
-    public void kaikkiLiikkeetToimiiKaappaus(){
-        Pawn p=new Pawn(board.board(), 1, 2, Colour.BLACK);
+    public void kaikkiLiikkeetToimiiKaappaus() {
+        Pawn p = new Pawn(board.board(), 1, 2, Colour.BLACK);
         board.addPiece(p);
-        assertTrue(pawn.moves().contains(new Integer[]{1,2}));
+        assertTrue(pawn.moves().stream().anyMatch(i -> i[0] == 1 && i[1] == 2));
     }
-    
+
     @Test
-    public void kaikkiLiikkeetToimiiEiVoiLiikkua(){
-        Pawn p=new Pawn(board.board(), 0, 2, Colour.BLACK);
+    public void kaikkiLiikkeetToimiiEiVoiLiikkua() {
+        Pawn p = new Pawn(board.board(), 0, 2, Colour.BLACK);
         board.addPiece(p);
         assertTrue(pawn.moves().isEmpty());
-    }
-    
-    @Test
-    public void kaikkiLiikkeetToimiiKaappausEiVoiLiikkuaUlosKentalta(){
-        Pawn p=new Pawn(board.board(), 0, 7, Colour.BLACK);
-        board.addPiece(p);
-        assertTrue(p.moves().isEmpty());
     }
 }

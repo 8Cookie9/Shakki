@@ -3,9 +3,9 @@ package fi.jaakko.pieces;
 public enum Colour {
     BLACK(-1),
     WHITE(1);
-    private int value;
+    private final int value;
 
-    Colour(int i) {
+    Colour(final int i) {
         this.value = i;
     }
 
