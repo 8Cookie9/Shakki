@@ -26,16 +26,16 @@ public class Pawn extends Piece {
         ArrayList<int[]> moves = new ArrayList<>();
         moves.addAll(this.enPassant());
         if ((super.getColour().value() == -1 && super.getY() > 0) 
-                || (super.getColour().value() == 1 && super.getY() < 7)) {
-            if (super.getX() < 7) {
+                || (super.getColour().value() == 1 && super.getY() < 7)) { //ei saa mennä pelialueen ulkopuolelle
+            if (super.getX() < 7) { //voiko kaapata ylävasemmalta
                 if (super.getBoard()[super.getX() + 1][super.getY() + super.getColour().value()] != null 
-                        && super.getBoard()[super.getX() + 1][super.getY() + super.getColour().value()].getColour() != super.getColour()) {
+                        && super.getBoard()[super.getX() + 1][super.getY() + super.getColour().value()].getColour() != super.getColour()) { //erivärinen pelinappula kohteessa
                     moves.add(new int[]{super.getX() + 1, super.getY() + super.getColour().value()});
                 }
             }
-            if (super.getX() > 0) {
+            if (super.getX() > 0) { //voiko kaapata yläoikealta
                 if (super.getBoard()[super.getX() - 1][super.getY() + super.getColour().value()] != null 
-                        && super.getBoard()[super.getX() - 1][super.getY() + super.getColour().value()].getColour() != super.getColour()) {
+                        && super.getBoard()[super.getX() - 1][super.getY() + super.getColour().value()].getColour() != super.getColour()) {//erivärinen pelinappula kohteessa
                     moves.add(new int[]{super.getX() - 1, super.getY() + super.getColour().value()});
                 }
             }
