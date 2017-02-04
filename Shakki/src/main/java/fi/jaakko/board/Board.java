@@ -49,12 +49,12 @@ public class Board {
     public boolean movePiece(int x, int y, int x2, int y2) {
         if (this.board[x][y] == null) {
             return false;
-        } else if (!this.board[x][y].moves().contains(new int[]{x2, y2})) {
+        } else if (!this.board[x][y].moves().stream().anyMatch(i -> i[0] == x2 && i[1] == y2)) {
             return false;
         }
         this.board[x][y].move(x2, y2);
         this.board[x2][y2] = this.board[x][y];
-        this.board = null;
+        this.board[x][y] = null;
         return true;
     }
 
@@ -63,7 +63,7 @@ public class Board {
         String s = "";
         s += "    0       1       2       3       4       5       6       7\n";
         for (int y = 0; y < 8; y++) {
-            s += "" + (7 - y);
+            s += "" + y;
             for (int x = 0; x < 8; x++) {
                 if (this.board[x][y] != null) {
                     s += this.board[x][y].toString();
@@ -71,8 +71,9 @@ public class Board {
                     s += "[      ]";
                 }
             }
-            s += "\n";
+            s += "" + y +"\n";
         }
+        s += "    0       1       2       3       4       5       6       7\n";
         return s;
     }
 }

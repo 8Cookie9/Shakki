@@ -25,6 +25,10 @@ public class Main {
                 break;
             }
             int y = Integer.parseInt(s);
+            if (board.board()[x][y] == null || x > 7 || y > 7 || x < 0 || y < 0) {
+                System.out.println("Kohdassa ei ole pelinappulaa.");
+                continue;
+            }
             System.out.println("Sallitut siirrot: " + prnt(board.board()[x][y].moves()));
             while (true) {
                 System.out.print("X2: ");
