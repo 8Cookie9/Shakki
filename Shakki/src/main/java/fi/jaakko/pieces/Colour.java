@@ -12,4 +12,13 @@ public enum Colour {
     public int value() {
         return this.value;
     }
+    
+    @Override
+    public String toString(){
+        if(this.value==1){
+            return "W";
+        }else{
+            return "B";
+        }
+    }
 }

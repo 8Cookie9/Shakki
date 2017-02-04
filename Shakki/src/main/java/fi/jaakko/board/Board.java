@@ -68,7 +68,7 @@ public class Board {
                 if (this.board[x][y] != null) {
                     s += this.board[x][y].toString();
                 } else {
-                    s += "[      ]";
+                    s += "[       ]";
                 }
             }
             s += "" + y +"\n";
