@@ -17,6 +17,7 @@ public class PawnTest {
     public void setUp() {
         board = new Board(false);
         pawn = new Pawn(board.board(), 0, 1, Colour.WHITE);
+        board.addPiece(pawn);
 
     }
 
@@ -75,5 +76,17 @@ public class PawnTest {
         Pawn p = new Pawn(board.board(), 0, 2, Colour.BLACK);
         board.addPiece(p);
         assertTrue(pawn.moves().isEmpty());
+    }
+
+    @Test
+    public void liikkuminenToimii() {
+        pawn.move(3, 4);
+        assertTrue(pawn.getX() == 3 && pawn.getY() == 4);
+
+    }
+
+    @Test
+    public void testToString() {
+        assertEquals("[ WPawn ]", this.pawn.toString());
     }
 }

@@ -6,7 +6,12 @@ public class Board {
 
     private Piece[][] board;
 
-    public Board(final boolean b) {
+    /**
+     *
+     * @param b jos true, luodaan shakkilauta ja laitetaan sinne nappulat
+     * alkuasetelmaan; jos false, luodaan tyhjä shakilauta (testaamista varten)
+     */
+    public Board(boolean b) {
         this.board = new Piece[8][8];
         if (b) {
             this.setup();
@@ -40,12 +45,25 @@ public class Board {
         return this.board;
     }
 
-    public void addPiece(Piece p) {
-        if (this.board[p.getX()][p.getY()] == null) {
-            this.board[p.getX()][p.getY()] = p;
+    /**
+     * Metodi lisää shakkinappulan pelilaudalle, jos kohta on tyhjä.
+     *
+     * @param piece Shakkinappula, joka lisätään sen sisältämään kohtaan
+     */
+    public void addPiece(Piece piece) {
+        if (this.board[piece.getX()][piece.getY()] == null) {
+            this.board[piece.getX()][piece.getY()] = piece;
         }
     }
 
+    /**
+     *
+     * @param x Siirrettävän nappulan x-koordinaatti
+     * @param y Siirrettävän nappulan y-koordinaatti
+     * @param x2 X-koordinaatti, jonne nappula yritetään siirtää
+     * @param y2 Y-koordinaatti, jonne nappula yritetään siirtää
+     * @return true, jos siirto onnistuu; false, jos ei onnistu
+     */
     public boolean movePiece(int x, int y, int x2, int y2) {
         if (this.board[x][y] == null) {
             return false;
@@ -58,6 +76,11 @@ public class Board {
         return true;
     }
 
+    /**
+     *
+     * @return palauttaa shakkilaudan ja nappuloiden tekstimuotoisen esityksen;
+     * käytetään testausta varten
+     */
     @Override
     public String toString() {
         String s = "";
@@ -71,7 +94,7 @@ public class Board {
                     s += "[       ]";
                 }
             }
-            s += "" + y +"\n";
+            s += "" + y + "\n";
         }
         s += "    0       1       2       3       4       5       6       7\n";
         return s;

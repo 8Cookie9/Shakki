@@ -5,10 +5,21 @@ import java.util.List;
 
 public class Rook extends Piece {
 
-    public Rook(Piece[][] board, final int x, final int y, final Colour c) {
+    /**
+     *
+     * @param board mihin lautaan nappula kuuluu
+     * @param x nappulan x-koordinaatti
+     * @param y nappulan y-koordinaatti
+     * @param c nappulan väri
+     */
+    public Rook(Piece[][] board, int x, int y, Colour c) {
         super(board, x, y, c);
     }
 
+    /**
+     *
+     * @return kaikki sallitut siirrot
+     */
     @Override
     public List<int[]> moves() {
         ArrayList<int[]> moves = new ArrayList<>();
@@ -17,79 +28,90 @@ public class Rook extends Piece {
         return moves;
     }
 
+    /**
+     *
+     * @return kaikki toisen napin kaappaavat siirrot
+     */
     public List<int[]> capture() {
         ArrayList<int[]> moves = new ArrayList<>();
-        for(int i=Math.min(super.getX()+1, 7);i<8;i++){ //oikealle
-            if(super.getBoard()[i][super.getY()]!=null){
-                if(super.getBoard()[i][super.getY()].getColour()!=super.getColour()){
-                    moves.add(new int[] {i,super.getY()});
+        for (int i = Math.min(super.getX() + 1, 7); i < 8; i++) { //oikealle
+            if (super.getBoard()[i][super.getY()] != null) {
+                if (super.getBoard()[i][super.getY()].getColour() != super.getColour()) {
+                    moves.add(new int[]{i, super.getY()});
                 }
                 break;
             }
         }
-        for(int i=Math.max(super.getX()-1, 0);i>=0;i--){ //vasemmalle
-            if(super.getBoard()[i][super.getY()]!=null){
-                if(super.getBoard()[i][super.getY()].getColour()!=super.getColour()){
-                    moves.add(new int[] {i,super.getY()});
+        for (int i = Math.max(super.getX() - 1, 0); i >= 0; i--) { //vasemmalle
+            if (super.getBoard()[i][super.getY()] != null) {
+                if (super.getBoard()[i][super.getY()].getColour() != super.getColour()) {
+                    moves.add(new int[]{i, super.getY()});
                 }
                 break;
             }
         }
-        for(int i=Math.min(super.getY()+1, 7);i<8;i++){ //ylös
-            if(super.getBoard()[super.getX()][i]!=null){
-                if(super.getBoard()[super.getX()][i].getColour()!=super.getColour()){
-                    moves.add(new int[] {super.getX(),i});
+        for (int i = Math.min(super.getY() + 1, 7); i < 8; i++) { //ylös
+            if (super.getBoard()[super.getX()][i] != null) {
+                if (super.getBoard()[super.getX()][i].getColour() != super.getColour()) {
+                    moves.add(new int[]{super.getX(), i});
                 }
                 break;
             }
         }
-        for(int i=Math.max(super.getY()-1, 0);i>=0;i--){ //alas
-            if(super.getBoard()[super.getX()][i]!=null){
-                if(super.getBoard()[super.getX()][i].getColour()!=super.getColour()){
-                    moves.add(new int[] {super.getX(),i});
+        for (int i = Math.max(super.getY() - 1, 0); i >= 0; i--) { //alas
+            if (super.getBoard()[super.getX()][i] != null) {
+                if (super.getBoard()[super.getX()][i].getColour() != super.getColour()) {
+                    moves.add(new int[]{super.getX(), i});
                 }
                 break;
             }
-        } 
+        }
         return moves;
     }
-    
 
+    /**
+     *
+     * @return kaikki siirrot, joilla vain liikutaan
+     */
     public List<int[]> regularMoves() {
         ArrayList<int[]> moves = new ArrayList<>();
-        for(int i=Math.min(super.getX()+1, 7);i<8;i++){ //oikealle
-            if(super.getBoard()[i][super.getY()]!=null){
+        for (int i = Math.min(super.getX() + 1, 7); i < 8; i++) { //oikealle
+            if (super.getBoard()[i][super.getY()] != null) {
                 break;
-            }else{
-                moves.add(new int[] {i,super.getY()});
-            }
-        }  
-        for(int i=Math.max(super.getX()-1, 0);i>=0;i--){ //vasemmalle
-            if(super.getBoard()[i][super.getY()]!=null){
-                break;
-            }else{
-                moves.add(new int[] {i,super.getY()});
+            } else {
+                moves.add(new int[]{i, super.getY()});
             }
         }
-        for(int i=Math.min(super.getY()+1, 7);i<8;i++){ //ylös
-            if(super.getBoard()[super.getX()][i]!=null){
+        for (int i = Math.max(super.getX() - 1, 0); i >= 0; i--) { //vasemmalle
+            if (super.getBoard()[i][super.getY()] != null) {
                 break;
-            }else{
-                moves.add(new int[] {super.getX(),i});
+            } else {
+                moves.add(new int[]{i, super.getY()});
             }
-        } 
-        for(int i=Math.max(super.getY()-1, 0);i>=0;i--){ //alas
-            if(super.getBoard()[super.getX()][i]!=null){
+        }
+        for (int i = Math.min(super.getY() + 1, 7); i < 8; i++) { //ylös
+            if (super.getBoard()[super.getX()][i] != null) {
                 break;
-            }else{
-                moves.add(new int[] {super.getX(),i});
+            } else {
+                moves.add(new int[]{super.getX(), i});
+            }
+        }
+        for (int i = Math.max(super.getY() - 1, 0); i >= 0; i--) { //alas
+            if (super.getBoard()[super.getX()][i] != null) {
+                break;
+            } else {
+                moves.add(new int[]{super.getX(), i});
             }
         }
         return moves;
     }
 
+    /**
+     *
+     * @return Pelinappula tekstimuodossa väri (B tai W) + nimi
+     */
     @Override
     public String toString() {
-        return "[ "+super.getColour()+"Rook ]";
+        return "[ " + super.getColour() + "Rook ]";
     }
 }

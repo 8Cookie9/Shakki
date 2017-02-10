@@ -9,6 +9,13 @@ public abstract class Piece {
     private final Colour colour;
     private final Piece[][] board;
 
+    /**
+     *
+     * @param board mihin lautaan nappula kuuluu
+     * @param x nappulan x-koordinaatti
+     * @param y nappulan y-koordinaatti
+     * @param c nappulan väri
+     */
     public Piece(Piece[][] board, int x, int y, Colour c) {
         this.x = x;
         this.y = y;
@@ -28,6 +35,12 @@ public abstract class Piece {
         return this.y;
     }
 
+    /**
+     * Siirtää nappulan uuteen paikkaan
+     *
+     * @param newx uusi x-koordinaatti
+     * @param newy uusi y-koordinaatti
+     */
     public void move(int newx, int newy) {
         this.x = newx;
         this.y = newy;
@@ -37,5 +50,9 @@ public abstract class Piece {
         return this.board;
     }
 
+    /**
+     *
+     * @return palauttaa sallitut siirrot listana
+     */
     public abstract List<int[]> moves();
 }

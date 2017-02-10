@@ -5,10 +5,21 @@ import java.util.List;
 
 public class Bishop extends Piece {
 
-    public Bishop(Piece[][] board, final int x, final int y, final Colour c) {
+    /**
+     *
+     * @param board mihin lautaan nappula kuuluu
+     * @param x nappulan x-koordinaatti
+     * @param y nappulan y-koordinaatti
+     * @param c nappulan väri
+     */
+    public Bishop(Piece[][] board, int x, int y, Colour c) {
         super(board, x, y, c);
     }
 
+    /**
+     *
+     * @return kaikki sallitut siirrot
+     */
     @Override
     public List<int[]> moves() {
         ArrayList<int[]> moves = new ArrayList<>();
@@ -17,20 +28,32 @@ public class Bishop extends Piece {
         return moves;
     }
 
+    /**
+     *
+     * @return kaikki toisen napin kaappaavat siirrot
+     */
     public List<int[]> capture() {
         ArrayList<int[]> moves = new ArrayList<>();
         //lisätään 
         return moves;
     }
 
+    /**
+     *
+     * @return kaikki siirrot, joilla vain liikutaan
+     */
     public List<int[]> regularMoves() {
         ArrayList<int[]> moves = new ArrayList<>();
 
         return moves;
     }
 
+    /**
+     *
+     * @return Pelinappula tekstimuodossa väri (B tai W) + nimi
+     */
     @Override
     public String toString() {
-        return "["+super.getColour()+"Bishop]";
+        return "[" + super.getColour() + "Bishop]";
     }
 }
