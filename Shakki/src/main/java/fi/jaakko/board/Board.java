@@ -84,7 +84,7 @@ public class Board {
     @Override
     public String toString() {
         String s = "";
-        s += "    0       1       2       3       4       5       6       7\n";
+        s += "    0        1        2        3        4        5        6        7\n";
         for (int y = 0; y < 8; y++) {
             s += "" + y;
             for (int x = 0; x < 8; x++) {
@@ -96,7 +96,7 @@ public class Board {
             }
             s += "" + y + "\n";
         }
-        s += "    0       1       2       3       4       5       6       7\n";
+        s += "    0        1        2        3        4        5        6        7\n";
         return s;
     }
 }

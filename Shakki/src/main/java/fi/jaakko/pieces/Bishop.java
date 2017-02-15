@@ -34,7 +34,16 @@ public class Bishop extends Piece {
      */
     public List<int[]> capture() {
         ArrayList<int[]> moves = new ArrayList<>();
-        //lisätään 
+        for (int i = 1; i < 8; i++) { //yläoikealle
+            if(!(super.getX()+i>7||super.getX()+i<0||super.getY()+i>7||super.getY()+i<0)){
+                if (super.getBoard()[super.getX()+i][super.getY()+i] != null) {
+                    if (super.getBoard()[super.getX()+i][super.getY()+i].getColour() != super.getColour()) {
+                        moves.add(new int[]{super.getX()+i, super.getY()+i});
+                    }
+                    break;
+                }
+            }
+        }
         return moves;
     }
 
