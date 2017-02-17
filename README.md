@@ -1,5 +1,5 @@
 ##Tiivistelmä aihekuvauksesta
-Shakkipeli, jota pystyy pelaamaan joko kaveria tai tekoälyä vastaan.
+Shakkipeli, jota pystyy pelaamaan kaveria vastaan.
 
 ##Dokumentaatio
 
