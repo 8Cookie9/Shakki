@@ -1,6 +1,6 @@
 package fi.jaakko.pieces;
 
-import fi.jaakko.board.Board;
+import fi.jaakko.game.Board;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

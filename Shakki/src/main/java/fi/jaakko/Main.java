@@ -1,6 +1,6 @@
 package fi.jaakko;
 
-import fi.jaakko.board.Board;
+import fi.jaakko.game.*;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,6 +9,7 @@ public class Main {
     public static void main(final String[] args) {
         //testamista varten; ei lopullinen
         Board board = new Board(true);
+        Game game =new Game(board);
         Scanner scanner = new Scanner(System.in);
         System.out.println(board);
         String s;
@@ -29,6 +30,19 @@ public class Main {
                 System.out.println("Kohdassa ei ole pelinappulaa.");
                 continue;
             }
+            if(board.board()[x][y].getColour()!=game.getCurrentColour()){
+                System.out.print("Ei ole ");
+                if(board.board()[x][y].getColour().value()==1){
+                    System.out.println(" valkoisen vuoro!");
+                }else{
+                    System.out.println(" mustan vuoro!");
+                }
+                continue;
+            }
+            if(board.board()[x][y].moves().isEmpty()){
+                System.out.println("Tälle nappulalle ei ole sallittuja siirtoja!");
+                continue;
+            }
             System.out.println("Sallitut siirrot: " + prnt(board.board()[x][y].moves()));
             while (true) {
                 System.out.print("X2: ");
@@ -43,8 +57,9 @@ public class Main {
                     break;
                 }
                 int y2 = Integer.parseInt(s);
-                boolean b = board.movePiece(x, y, x2, y2);
+                boolean b = game.tryMove(x, y, x2, y2);
                 if (b) {
+                    game.nextTurn();
                     break;
                 } else {
                     System.out.println("Ei sallittu siirto.");

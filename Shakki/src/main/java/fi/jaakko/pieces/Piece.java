@@ -6,6 +6,7 @@ public abstract class Piece {
 
     private int x;
     private int y;
+    private int moves;
     private final Colour colour;
     private final Piece[][] board;
 
@@ -21,6 +22,7 @@ public abstract class Piece {
         this.y = y;
         this.colour = c;
         this.board = board;
+        this.moves=0;
     }
 
     public Colour getColour() {
@@ -34,6 +36,10 @@ public abstract class Piece {
     public int getY() {
         return this.y;
     }
+    
+    public int getMoves(){
+        return this.moves;
+    }
 
     /**
      * Siirtää nappulan uuteen paikkaan
@@ -44,6 +50,7 @@ public abstract class Piece {
     public void move(int newx, int newy) {
         this.x = newx;
         this.y = newy;
+        this.moves++;
     }
 
     public Piece[][] getBoard() {

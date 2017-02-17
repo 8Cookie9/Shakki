@@ -44,6 +44,36 @@ public class Bishop extends Piece {
                 }
             }
         }
+        for (int i = 1; i < 8; i++) { //ylävasemmalle
+            if(!(super.getX()-i>7||super.getX()-i<0||super.getY()+i>7||super.getY()+i<0)){
+                if (super.getBoard()[super.getX()-i][super.getY()+i] != null) {
+                    if (super.getBoard()[super.getX()-i][super.getY()+i].getColour() != super.getColour()) {
+                        moves.add(new int[]{super.getX()-i, super.getY()+i});
+                    }
+                    break;
+                }
+            }
+        }
+        for (int i = 1; i < 8; i++) { //alaoikealle
+            if(!(super.getX()+i>7||super.getX()+i<0||super.getY()-i>7||super.getY()-i<0)){
+                if (super.getBoard()[super.getX()+i][super.getY()-i] != null) {
+                    if (super.getBoard()[super.getX()+i][super.getY()-i].getColour() != super.getColour()) {
+                        moves.add(new int[]{super.getX()+i, super.getY()-i});
+                    }
+                    break;
+                }
+            }
+        }
+        for (int i = 1; i < 8; i++) { //alavasemmalle
+            if(!(super.getX()-i>7||super.getX()-i<0||super.getY()-i>7||super.getY()-i<0)){
+                if (super.getBoard()[super.getX()-i][super.getY()-i] != null) {
+                    if (super.getBoard()[super.getX()-i][super.getY()-i].getColour() != super.getColour()) {
+                        moves.add(new int[]{super.getX()-i, super.getY()-i});
+                    }
+                    break;
+                }
+            }
+        }
         return moves;
     }
 
@@ -53,7 +83,42 @@ public class Bishop extends Piece {
      */
     public List<int[]> regularMoves() {
         ArrayList<int[]> moves = new ArrayList<>();
-
+        for (int i = 1; i < 8; i++) { //yläoikealle
+            if(!(super.getX()+i>7||super.getX()+i<0||super.getY()+i>7||super.getY()+i<0)){
+                if (super.getBoard()[super.getX()+i][super.getY()+i] == null) {
+                    moves.add(new int[]{super.getX()+i, super.getY()+i});
+                }else{
+                    break;
+                }
+            }
+        }
+        for (int i = 1; i < 8; i++) { //ylävasemmalle
+            if(!(super.getX()-i>7||super.getX()-i<0||super.getY()+i>7||super.getY()+i<0)){
+                if (super.getBoard()[super.getX()-i][super.getY()+i] == null) {
+                    moves.add(new int[]{super.getX()-i, super.getY()+i});
+                }else{
+                    break;
+                }
+            }
+        }
+        for (int i = 1; i < 8; i++) { //alaoikealle
+            if(!(super.getX()+i>7||super.getX()+i<0||super.getY()-i>7||super.getY()-i<0)){
+                if (super.getBoard()[super.getX()+i][super.getY()-i] == null) {
+                    moves.add(new int[]{super.getX()+i, super.getY()-i});
+                }else{
+                    break;
+                }
+            }
+        }
+        for (int i = 1; i < 8; i++) { //alavasemmalle
+            if(!(super.getX()-i>7||super.getX()-i<0||super.getY()-i>7||super.getY()-i<0)){
+                if (super.getBoard()[super.getX()-i][super.getY()-i] == null) {
+                    moves.add(new int[]{super.getX()-i, super.getY()-i});
+                }else{
+                    break;
+                }
+            }
+        }
         return moves;
     }
 
