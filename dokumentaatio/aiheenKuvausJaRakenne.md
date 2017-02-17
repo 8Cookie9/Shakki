@@ -17,3 +17,11 @@ Tekoäly, jota vastaan voi valita pelata kaverin sijaan, toteutetaan minimax-alg
 **Luokkakaavio**
 
 ![Luokkakaavio](ClassDiagram.png)
+
+**Sekvenssikaaviot**
+
+![Sekvenssikaavio](OnnistunutSiirto.png)
+Onnistunut siirto
+
+![Sekvenssikaavio](EpäonnistunutSiirto.png)
+Epäonnistunut siirto
