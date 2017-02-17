@@ -21,7 +21,5 @@ Tekoäly, jota vastaan voi valita pelata kaverin sijaan, toteutetaan minimax-alg
 **Sekvenssikaaviot**
 
 ![Sekvenssikaavio](OnnistunutSiirto.png)
-Onnistunut siirto
 
 ![Sekvenssikaavio](EpäonnistunutSiirto.png)
-Epäonnistunut siirto
