@@ -6,7 +6,8 @@ import java.util.List;
 public class Bishop extends Piece {
 
     /**
-     *
+     *Nappula Bishop ja sen toiminta.
+     * 
      * @param board mihin lautaan nappula kuuluu
      * @param x nappulan x-koordinaatti
      * @param y nappulan y-koordinaatti
@@ -17,7 +18,8 @@ public class Bishop extends Piece {
     }
 
     /**
-     *
+     *Kerää kaikki sallitut siirrot.
+     * 
      * @return kaikki sallitut siirrot
      */
     @Override
@@ -29,46 +31,47 @@ public class Bishop extends Piece {
     }
 
     /**
-     *
+     *Sirrot, joilla kaapataan nappula.
+     * 
      * @return kaikki toisen napin kaappaavat siirrot
      */
     public List<int[]> capture() {
         ArrayList<int[]> moves = new ArrayList<>();
         for (int i = 1; i < 8; i++) { //yläoikealle
-            if(!(super.getX()+i>7||super.getX()+i<0||super.getY()+i>7||super.getY()+i<0)){
-                if (super.getBoard()[super.getX()+i][super.getY()+i] != null) {
-                    if (super.getBoard()[super.getX()+i][super.getY()+i].getColour() != super.getColour()) {
-                        moves.add(new int[]{super.getX()+i, super.getY()+i});
+            if (super.getX() + i <= 7 && super.getY() + i <= 7) {
+                if (super.getBoard()[super.getX() + i][super.getY() + i] != null) {
+                    if (super.getBoard()[super.getX() + i][super.getY() + i].getColour() != super.getColour()) {
+                        moves.add(new int[]{super.getX() + i, super.getY() + i});
                     }
                     break;
                 }
             }
         }
         for (int i = 1; i < 8; i++) { //ylävasemmalle
-            if(!(super.getX()-i>7||super.getX()-i<0||super.getY()+i>7||super.getY()+i<0)){
-                if (super.getBoard()[super.getX()-i][super.getY()+i] != null) {
-                    if (super.getBoard()[super.getX()-i][super.getY()+i].getColour() != super.getColour()) {
-                        moves.add(new int[]{super.getX()-i, super.getY()+i});
+            if (super.getX() - i >= 0 && super.getY() + i <= 7) {
+                if (super.getBoard()[super.getX() - i][super.getY() + i] != null) {
+                    if (super.getBoard()[super.getX() - i][super.getY() + i].getColour() != super.getColour()) {
+                        moves.add(new int[]{super.getX() - i, super.getY() + i});
                     }
                     break;
                 }
             }
         }
         for (int i = 1; i < 8; i++) { //alaoikealle
-            if(!(super.getX()+i>7||super.getX()+i<0||super.getY()-i>7||super.getY()-i<0)){
-                if (super.getBoard()[super.getX()+i][super.getY()-i] != null) {
-                    if (super.getBoard()[super.getX()+i][super.getY()-i].getColour() != super.getColour()) {
-                        moves.add(new int[]{super.getX()+i, super.getY()-i});
+            if (super.getX() + i <= 7 && super.getY() - i >= 0) {
+                if (super.getBoard()[super.getX() + i][super.getY() - i] != null) {
+                    if (super.getBoard()[super.getX() + i][super.getY() - i].getColour() != super.getColour()) {
+                        moves.add(new int[]{super.getX() + i, super.getY() - i});
                     }
                     break;
                 }
             }
         }
         for (int i = 1; i < 8; i++) { //alavasemmalle
-            if(!(super.getX()-i>7||super.getX()-i<0||super.getY()-i>7||super.getY()-i<0)){
-                if (super.getBoard()[super.getX()-i][super.getY()-i] != null) {
-                    if (super.getBoard()[super.getX()-i][super.getY()-i].getColour() != super.getColour()) {
-                        moves.add(new int[]{super.getX()-i, super.getY()-i});
+            if (super.getX() - i >= 0 && super.getY() - i >= 0) {
+                if (super.getBoard()[super.getX() - i][super.getY() - i] != null) {
+                    if (super.getBoard()[super.getX() - i][super.getY() - i].getColour() != super.getColour()) {
+                        moves.add(new int[]{super.getX() - i, super.getY() - i});
                     }
                     break;
                 }
@@ -78,43 +81,44 @@ public class Bishop extends Piece {
     }
 
     /**
-     *
+     *Siirrot, joilla liikutaan.
+     * 
      * @return kaikki siirrot, joilla vain liikutaan
      */
     public List<int[]> regularMoves() {
         ArrayList<int[]> moves = new ArrayList<>();
         for (int i = 1; i < 8; i++) { //yläoikealle
-            if(!(super.getX()+i>7||super.getX()+i<0||super.getY()+i>7||super.getY()+i<0)){
-                if (super.getBoard()[super.getX()+i][super.getY()+i] == null) {
-                    moves.add(new int[]{super.getX()+i, super.getY()+i});
-                }else{
+            if (super.getX() + i <= 7 && super.getY() + i <= 7) {
+                if (super.getBoard()[super.getX() + i][super.getY() + i] == null) {
+                    moves.add(new int[]{super.getX() + i, super.getY() + i});
+                } else {
                     break;
                 }
             }
         }
         for (int i = 1; i < 8; i++) { //ylävasemmalle
-            if(!(super.getX()-i>7||super.getX()-i<0||super.getY()+i>7||super.getY()+i<0)){
-                if (super.getBoard()[super.getX()-i][super.getY()+i] == null) {
-                    moves.add(new int[]{super.getX()-i, super.getY()+i});
-                }else{
+            if (super.getX() - i >= 0 && super.getY() + i <= 7) {
+                if (super.getBoard()[super.getX() - i][super.getY() + i] == null) {
+                    moves.add(new int[]{super.getX() - i, super.getY() + i});
+                } else {
                     break;
                 }
             }
         }
         for (int i = 1; i < 8; i++) { //alaoikealle
-            if(!(super.getX()+i>7||super.getX()+i<0||super.getY()-i>7||super.getY()-i<0)){
-                if (super.getBoard()[super.getX()+i][super.getY()-i] == null) {
-                    moves.add(new int[]{super.getX()+i, super.getY()-i});
-                }else{
+            if (super.getX() + i <= 7 && super.getY() - i >= 0) {
+                if (super.getBoard()[super.getX() + i][super.getY() - i] == null) {
+                    moves.add(new int[]{super.getX() + i, super.getY() - i});
+                } else {
                     break;
                 }
             }
         }
         for (int i = 1; i < 8; i++) { //alavasemmalle
-            if(!(super.getX()-i>7||super.getX()-i<0||super.getY()-i>7||super.getY()-i<0)){
-                if (super.getBoard()[super.getX()-i][super.getY()-i] == null) {
-                    moves.add(new int[]{super.getX()-i, super.getY()-i});
-                }else{
+            if (super.getX() - i >= 0 && super.getY() - i >= 0) {
+                if (super.getBoard()[super.getX() - i][super.getY() - i] == null) {
+                    moves.add(new int[]{super.getX() - i, super.getY() - i});
+                } else {
                     break;
                 }
             }
@@ -123,7 +127,8 @@ public class Bishop extends Piece {
     }
 
     /**
-     *
+     *Bishop tekstimuodossa.
+     * 
      * @return Pelinappula tekstimuodossa väri (B tai W) + nimi
      */
     @Override

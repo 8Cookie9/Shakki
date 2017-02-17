@@ -6,7 +6,8 @@ import java.util.List;
 public class Pawn extends Piece {
 
     /**
-     *
+     *Pawn-nappulan toiminta.
+     * 
      * @param board mihin lautaan nappula kuuluu
      * @param x nappulan x-koordinaatti
      * @param y nappulan y-koordinaatti
@@ -17,7 +18,8 @@ public class Pawn extends Piece {
     }
 
     /**
-     *
+     *Kerää kaikki sallitut siirrot yhteen.
+     * 
      * @return kaikki sallitut siirrot
      */
     @Override
@@ -28,13 +30,31 @@ public class Pawn extends Piece {
         return moves;
     }
 
-    private List<int[]> enPassant() { //erikoissiirto, ohjelmoidaan myöhemmin
+    /**
+     *En passant -siirto.
+     * 
+     * @return palautaa mahdollisen enPassant sirron listana
+     */
+    public List<int[]> enPassant() {
         ArrayList<int[]> moves = new ArrayList<>();
+        if (super.getColour().value() == 1 && super.getY() == 4 || super.getColour().value() == -1 && super.getY() == 3) {
+            if (super.getBoard()[super.getX() - 1][super.getY()] != null) {
+                if (super.getBoard()[super.getX() - 1][super.getY()].getClass() == this.getClass() && super.getBoard()[super.getX() - 1][super.getY()].getMoves() == 1) {
+                    moves.add(new int[]{super.getX() - 1, super.getY() + super.getColour().value()});
+                }
+            }
+            if (super.getBoard()[super.getX() + 1][super.getY()] != null) {
+                if (super.getBoard()[super.getX() + 1][super.getY()].getClass() == this.getClass() && super.getBoard()[super.getX() + 1][super.getY()].getMoves() == 1) {
+                    moves.add(new int[]{super.getX() + 1, super.getY() + super.getColour().value()});
+                }
+            }
+        }
         return moves;
     }
 
     /**
-     *
+     *Siirrot joilla kaapataan nappula.
+     * 
      * @return kaikki toisen napin kaappaavat siirrot
      */
     public List<int[]> capture() {
@@ -59,7 +79,8 @@ public class Pawn extends Piece {
     }
 
     /**
-     *
+     *Liikkumissiirrot.
+     * 
      * @return kaikki siirrot, joilla vain liikutaan
      */
     public List<int[]> regularMoves() { //1 eteenpäin, 2 eteenpäin alussa
@@ -81,7 +102,8 @@ public class Pawn extends Piece {
     }
 
     /**
-     *
+     *Tekstimuoto nappulalle.
+     * 
      * @return Pelinappula tekstimuodossa väri (B tai W) + nimi
      */
     @Override

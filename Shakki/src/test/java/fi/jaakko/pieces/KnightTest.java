@@ -60,7 +60,6 @@ public class KnightTest {
 
     @Test
     public void eiMeneRajojenYli() {
-        Board b = new Board(false);
         Knight k1 = new Knight(board.board(), 1, 1, Colour.WHITE);
         Knight k2 = new Knight(board.board(), 7, 7, Colour.WHITE);
         assertFalse(k1.moves().stream().anyMatch(i -> i[0] < 0 || i[1] < 0 || i[0] > 7 || i[1] > 7));

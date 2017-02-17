@@ -9,7 +9,7 @@ public class Knight extends Piece {
     private ArrayList<int[]> mv;
 
     /**
-     *
+     *Knight-nappulan toiminta.
      * @param board mihin lautaan nappula kuuluu
      * @param x nappulan x-koordinaatti
      * @param y nappulan y-koordinaatti
@@ -21,7 +21,7 @@ public class Knight extends Piece {
     }
 
     /**
-     *
+     *Kaikki sallitut siirrot.
      * @return kaikki sallitut siirrot
      */
     @Override
@@ -33,7 +33,7 @@ public class Knight extends Piece {
     }
 
     /**
-     *
+     *Siirrot, joilla kaapataan toinen nappula.
      * @return kaikki toisen napin kaappaavat siirrot
      */
     public List<int[]> capture() {
@@ -45,7 +45,7 @@ public class Knight extends Piece {
     }
 
     /**
-     *
+     *Siirrot, joilla vain liikutaan.
      * @return kaikki siirrot, joilla vain liikutaan
      */
     public List<int[]> regularMoves() {
@@ -68,7 +68,7 @@ public class Knight extends Piece {
     }
 
     /**
-     *
+     *Knight tekstimuodossa.
      * @return Pelinappula tekstimuodossa väri (B tai W) + nimi
      */
     @Override

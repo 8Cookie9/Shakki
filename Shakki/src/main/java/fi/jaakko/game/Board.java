@@ -5,19 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
+
     private List<Piece> black;
     private List<Piece> white;
     private Piece[][] board;
 
     /**
-     *
+     *Shakkilautaa kuvaava luokka.
+     * 
      * @param b jos true, luodaan shakkilauta ja laitetaan sinne nappulat
      * alkuasetelmaan; jos false, luodaan tyhjä shakilauta (testaamista varten)
      */
     public Board(boolean b) {
         this.board = new Piece[8][8];
-        this.white=new ArrayList<>();
-        this.black=new ArrayList<>();
+        this.white = new ArrayList<>();
+        this.black = new ArrayList<>();
         if (b) {
             this.setup();
         }
@@ -36,53 +38,58 @@ public class Board {
         Piece w = new Rook(this.board(), 0, 0, Colour.WHITE);
         this.addPiece(w);
         this.addPiece(w);
-        w=new Rook(this.board(), 7, 0, Colour.WHITE);
+        w = new Rook(this.board(), 7, 0, Colour.WHITE);
         this.addPiece(w);
         this.addPiece(w);
-        w=new Knight(this.board(), 1, 0, Colour.WHITE);
+        w = new Knight(this.board(), 1, 0, Colour.WHITE);
         this.addPiece(w);
         this.addPiece(w);
-        w=new Knight(this.board(), 6, 0, Colour.WHITE);
+        w = new Knight(this.board(), 6, 0, Colour.WHITE);
         this.addPiece(w);
         this.addPiece(w);
-        w=new Bishop(this.board(), 2, 0, Colour.WHITE);
+        w = new Bishop(this.board(), 2, 0, Colour.WHITE);
         this.addPiece(w);
         this.addPiece(w);
-        w=new Bishop(this.board(), 5, 0, Colour.WHITE);
+        w = new Bishop(this.board(), 5, 0, Colour.WHITE);
         this.addPiece(w);
         this.addPiece(w);
-        w=new Queen(this.board(), 3, 0, Colour.WHITE);
+        w = new Queen(this.board(), 3, 0, Colour.WHITE);
         this.addPiece(w);
         this.addPiece(w);
-        w=new King(this.board(), 4, 0, Colour.WHITE);
+        w = new King(this.board(), 4, 0, Colour.WHITE);
         this.addPiece(w);
         this.addPiece(w);
-        b=new Rook(this.board(), 0, 7, Colour.BLACK);
+        b = new Rook(this.board(), 0, 7, Colour.BLACK);
         this.addPiece(b);
         this.black.add(b);
-        b=new Rook(this.board(), 7, 7, Colour.BLACK);
+        b = new Rook(this.board(), 7, 7, Colour.BLACK);
         this.addPiece(b);
         this.black.add(b);
-        b=new Knight(this.board(), 1, 7, Colour.BLACK);
+        b = new Knight(this.board(), 1, 7, Colour.BLACK);
         this.addPiece(b);
         this.black.add(b);
-        b=new Knight(this.board(), 6, 7, Colour.BLACK);
+        b = new Knight(this.board(), 6, 7, Colour.BLACK);
         this.addPiece(b);
         this.black.add(b);
-        b=new Bishop(this.board(), 2, 7, Colour.BLACK);
+        b = new Bishop(this.board(), 2, 7, Colour.BLACK);
         this.addPiece(b);
         this.black.add(b);
-        b=new Bishop(this.board(), 5, 7, Colour.BLACK);
+        b = new Bishop(this.board(), 5, 7, Colour.BLACK);
         this.addPiece(b);
         this.black.add(b);
-        b=new Queen(this.board(), 3, 7, Colour.BLACK);
+        b = new Queen(this.board(), 3, 7, Colour.BLACK);
         this.addPiece(b);
         this.black.add(b);
-        b=new King(this.board(), 4, 7, Colour.BLACK);
+        b = new King(this.board(), 4, 7, Colour.BLACK);
         this.addPiece(b);
         this.black.add(b);
     }
-
+    
+    /**
+     * Palauttaa pelilaudan.
+     * 
+     * @return pelilauta (mitä missäkin ruudussa)
+     */
     public Piece[][] board() {
         return this.board;
     }
@@ -95,16 +102,17 @@ public class Board {
     public void addPiece(Piece piece) {
         if (this.board[piece.getX()][piece.getY()] == null) {
             this.board[piece.getX()][piece.getY()] = piece;
-            if(piece.getColour().value()==1){
+            if (piece.getColour().value() == 1) {
                 this.white.add(piece);
-            }else{
+            } else {
                 this.black.add(piece);
             }
         }
     }
 
     /**
-     *
+     *Yrittää siirtää nappulaa toiseen paikkaan sääntöjä noudattaen.
+     * 
      * @param x Siirrettävän nappulan x-koordinaatti
      * @param y Siirrettävän nappulan y-koordinaatti
      * @param x2 X-koordinaatti, jonne nappula yritetään siirtää
@@ -122,17 +130,18 @@ public class Board {
         this.board[x][y] = null;
         return true;
     }
-    
-    public List<Piece> getBlackPieces(){
+
+    public List<Piece> getBlackPieces() {
         return this.black;
     }
-    
-    public List<Piece> getWhitePieces(){
+
+    public List<Piece> getWhitePieces() {
         return this.white;
     }
 
     /**
-     *
+     *Pelilauta tekstimuodossa tekstikäyttöliittymää varten.
+     * 
      * @return palauttaa shakkilaudan ja nappuloiden tekstimuotoisen esityksen;
      * käytetään testausta varten
      */

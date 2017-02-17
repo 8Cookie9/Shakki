@@ -5,11 +5,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-
+    
+    /**
+     * Tekstikäyttöliittymä testausta varten.
+     * @param args komentorivi argumentit, ei käytetä
+     */
     public static void main(final String[] args) {
         //testamista varten; ei lopullinen
         Board board = new Board(true);
-        Game game =new Game(board);
+        Game game = new Game(board);
         Scanner scanner = new Scanner(System.in);
         System.out.println(board);
         String s;
@@ -30,16 +34,16 @@ public class Main {
                 System.out.println("Kohdassa ei ole pelinappulaa.");
                 continue;
             }
-            if(board.board()[x][y].getColour()!=game.getCurrentColour()){
+            if (board.board()[x][y].getColour() != game.getCurrentColour()) {
                 System.out.print("Ei ole ");
-                if(board.board()[x][y].getColour().value()==1){
+                if (board.board()[x][y].getColour().value() == 1) {
                     System.out.println(" valkoisen vuoro!");
-                }else{
+                } else {
                     System.out.println(" mustan vuoro!");
                 }
                 continue;
             }
-            if(board.board()[x][y].moves().isEmpty()){
+            if (board.board()[x][y].moves().isEmpty()) {
                 System.out.println("Tälle nappulalle ei ole sallittuja siirtoja!");
                 continue;
             }

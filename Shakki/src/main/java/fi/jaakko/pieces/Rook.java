@@ -6,7 +6,7 @@ import java.util.List;
 public class Rook extends Piece {
 
     /**
-     *
+     *Rook-nappulan toiminta.
      * @param board mihin lautaan nappula kuuluu
      * @param x nappulan x-koordinaatti
      * @param y nappulan y-koordinaatti
@@ -17,7 +17,7 @@ public class Rook extends Piece {
     }
 
     /**
-     *
+     *Kaikki sallitut siirrot.
      * @return kaikki sallitut siirrot
      */
     @Override
@@ -29,7 +29,7 @@ public class Rook extends Piece {
     }
 
     /**
-     *
+     *Siirrot, joilla kaapataan toinen nappula.
      * @return kaikki toisen napin kaappaavat siirrot
      */
     public List<int[]> capture() {
@@ -70,7 +70,7 @@ public class Rook extends Piece {
     }
 
     /**
-     *
+     *Siirrot, joilla liikutaan.
      * @return kaikki siirrot, joilla vain liikutaan
      */
     public List<int[]> regularMoves() {
@@ -107,7 +107,7 @@ public class Rook extends Piece {
     }
 
     /**
-     *
+     *Rook tekstimuodossa.
      * @return Pelinappula tekstimuodossa väri (B tai W) + nimi
      */
     @Override

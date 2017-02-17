@@ -11,7 +11,8 @@ public enum Colour {
     }
 
     /**
-     *
+     *Arvo värille.
+     * 
      * @return värin numeroarvo: WHITE = 1; BLACK = -1
      */
     public int value() {
@@ -19,7 +20,8 @@ public enum Colour {
     }
 
     /**
-     *
+     *Väri tekstimuodossa.
+     * 
      * @return Värin ensimmäinen kirjain: WHITE = "W"; BLACK = "B"
      */
     @Override

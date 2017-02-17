@@ -99,7 +99,7 @@ public class BoardTest {
     @Test
     public void testToString() {
         Board board = new Board(true);
-        assertEquals("    0       1       2       3       4       5       6       7\n"
+        assertEquals("    0        1        2        3        4        5        6        7\n"
                 + "0[ WRook ][WKnight][WBishop][WQueen ][ WKing ][WBishop][WKnight][ WRook ]0\n"
                 + "1[ WPawn ][ WPawn ][ WPawn ][ WPawn ][ WPawn ][ WPawn ][ WPawn ][ WPawn ]1\n2"
                 + "[       ][       ][       ][       ][       ][       ][       ][       ]2\n3"
@@ -108,7 +108,7 @@ public class BoardTest {
                 + "[       ][       ][       ][       ][       ][       ][       ][       ]5\n6"
                 + "[ BPawn ][ BPawn ][ BPawn ][ BPawn ][ BPawn ][ BPawn ][ BPawn ][ BPawn ]6\n7"
                 + "[ BRook ][BKnight][BBishop][BQueen ][ BKing ][BBishop][BKnight][ BRook ]7\n"
-                + "    0       1       2       3       4       5       6       7\n", board.toString());
+                + "    0        1        2        3        4        5        6        7\n", board.toString());
     }
 
 }

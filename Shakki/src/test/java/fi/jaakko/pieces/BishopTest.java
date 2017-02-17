@@ -5,16 +5,78 @@
  */
 package fi.jaakko.pieces;
 
+import fi.jaakko.game.Board;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class BishopTest {
 
-    public BishopTest() {
-    }
+    Board board;
+    Bishop bishop;
 
     @Before
     public void setUp() {
+        board = new Board(false);
+        bishop = new Bishop(board.board(), 3, 3, Colour.WHITE);
+        board.addPiece(bishop);
+    }
+
+    @Test
+    public void captureTyhjaKunAinutNappula() {
+        assertTrue(bishop.capture().isEmpty());
+    }
+
+    @Test
+    public void captureEiSamanvarista() {
+        board.addPiece(new Bishop(board.board(), 2, 4, Colour.WHITE));
+        board.addPiece(new Bishop(board.board(), 3, 4, Colour.WHITE));
+        board.addPiece(new Bishop(board.board(), 4, 4, Colour.WHITE));
+        board.addPiece(new Bishop(board.board(), 4, 3, Colour.WHITE));
+        board.addPiece(new Bishop(board.board(), 4, 2, Colour.WHITE));
+        board.addPiece(new Bishop(board.board(), 3, 2, Colour.WHITE));
+        board.addPiece(new Bishop(board.board(), 2, 2, Colour.WHITE));
+        board.addPiece(new Bishop(board.board(), 2, 3, Colour.WHITE));
+        assertTrue(bishop.capture().isEmpty());
+    }
+
+    @Test
+    public void captureToimiiNormaalisti() {
+        board.addPiece(new Bishop(board.board(), 2, 4, Colour.BLACK));
+        board.addPiece(new Bishop(board.board(), 3, 4, Colour.BLACK));
+        board.addPiece(new Bishop(board.board(), 4, 4, Colour.BLACK));
+        board.addPiece(new Bishop(board.board(), 4, 3, Colour.BLACK));
+        board.addPiece(new Bishop(board.board(), 4, 2, Colour.BLACK));
+        board.addPiece(new Bishop(board.board(), 3, 2, Colour.BLACK));
+        board.addPiece(new Bishop(board.board(), 2, 2, Colour.BLACK));
+        board.addPiece(new Bishop(board.board(), 2, 3, Colour.BLACK));
+        assertTrue(bishop.capture().stream().anyMatch(i -> i[0] == 2 && i[1] == 4));
+        assertTrue(bishop.capture().stream().anyMatch(i -> i[0] == 4 && i[1] == 4));
+        assertTrue(bishop.capture().stream().anyMatch(i -> i[0] == 4 && i[1] == 2));
+        assertTrue(bishop.capture().stream().anyMatch(i -> i[0] == 2 && i[1] == 2));
+    }
+
+    @Test
+    public void eiMeneRajojenYli() {
+        Bishop k1 = new Bishop(board.board(), 0, 0, Colour.WHITE);
+        Bishop k2 = new Bishop(board.board(), 0, 7, Colour.WHITE);
+        Bishop k3 = new Bishop(board.board(), 7, 0, Colour.WHITE);
+        Bishop k4 = new Bishop(board.board(), 7, 7, Colour.WHITE);
+        assertFalse(k1.moves().stream().anyMatch(i -> i[0] < 0 || i[1] < 0 || i[0] > 7 || i[1] > 7));
+        assertFalse(k2.moves().stream().anyMatch(i -> i[0] < 0 || i[1] < 0 || i[0] > 7 || i[1] > 7));
+        assertFalse(k3.moves().stream().anyMatch(i -> i[0] < 0 || i[1] < 0 || i[0] > 7 || i[1] > 7));
+        assertFalse(k4.moves().stream().anyMatch(i -> i[0] < 0 || i[1] < 0 || i[0] > 7 || i[1] > 7));
+    }
+
+    @Test
+    public void eiVoiSiirtyäPaikallaan() {
+        assertFalse(this.bishop.regularMoves().stream().anyMatch(i -> i[0] == this.bishop.getX() && i[1] == this.bishop.getY()));
+        assertFalse(this.bishop.capture().stream().anyMatch(i -> i[0] == this.bishop.getX() && i[1] == this.bishop.getY()));
+        assertFalse(this.bishop.moves().stream().anyMatch(i -> i[0] == this.bishop.getX() && i[1] == this.bishop.getY()));
+    }
+
+    @Test
+    public void testToString() {
+        assertEquals("[WBishop]", this.bishop.toString());
     }
 }
