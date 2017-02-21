@@ -8,4 +8,5 @@ Päivä | Tunnit | Kuvaus
 04.02.2017 | 3h | Knight- ja Rook-luokka toimivaksi
 10.02.2017 | 4h | Testejä, JavaDoc, Luokkakaavion päivittäminen, koodin parantelua
 17.02.2017 | 6h | Luokat King ja Queen, testejä, JavaDoc, Luokkakaavion päivittäminen, sekvenssikaaviot
+21.02.2017 | 5h | Graafinen käyttöliityymä toimivaksi
 ... | ... | ...
