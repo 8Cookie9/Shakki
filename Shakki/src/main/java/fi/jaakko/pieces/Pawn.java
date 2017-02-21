@@ -30,36 +30,15 @@ public class Pawn extends Piece {
         return moves;
     }
 
-    /**
-     *En passant -siirto.
-     * 
-     * @return palautaa mahdollisen enPassant sirron listana
-     */
-    public List<int[]> enPassant() {
-        ArrayList<int[]> moves = new ArrayList<>();
-        if (super.getColour().value() == 1 && super.getY() == 4 || super.getColour().value() == -1 && super.getY() == 3) {
-            if (super.getBoard()[super.getX() - 1][super.getY()] != null) {
-                if (super.getBoard()[super.getX() - 1][super.getY()].getClass() == this.getClass() && super.getBoard()[super.getX() - 1][super.getY()].getMoves() == 1) {
-                    moves.add(new int[]{super.getX() - 1, super.getY() + super.getColour().value()});
-                }
-            }
-            if (super.getBoard()[super.getX() + 1][super.getY()] != null) {
-                if (super.getBoard()[super.getX() + 1][super.getY()].getClass() == this.getClass() && super.getBoard()[super.getX() + 1][super.getY()].getMoves() == 1) {
-                    moves.add(new int[]{super.getX() + 1, super.getY() + super.getColour().value()});
-                }
-            }
-        }
-        return moves;
-    }
 
     /**
      *Siirrot joilla kaapataan nappula.
      * 
      * @return kaikki toisen napin kaappaavat siirrot
      */
+    @Override
     public List<int[]> capture() {
         ArrayList<int[]> moves = new ArrayList<>();
-        moves.addAll(this.enPassant());
         if ((super.getColour().value() == -1 && super.getY() > 0)
                 || (super.getColour().value() == 1 && super.getY() < 7)) { //ei saa mennä pelialueen ulkopuolelle
             if (super.getX() < 7) { //voiko kaapata ylävasemmalta
@@ -83,6 +62,7 @@ public class Pawn extends Piece {
      * 
      * @return kaikki siirrot, joilla vain liikutaan
      */
+    @Override
     public List<int[]> regularMoves() { //1 eteenpäin, 2 eteenpäin alussa
         ArrayList<int[]> moves = new ArrayList<>();
         if (!((super.getColour().value() == 1 && super.getY() == 7)
@@ -108,6 +88,10 @@ public class Pawn extends Piece {
      */
     @Override
     public String toString() {
-        return "[ " + super.getColour() + "Pawn ]";
+        if(super.getColour()==Colour.BLACK){
+            return "♟";
+        }else{
+            return "♙";
+        }
     }
 }

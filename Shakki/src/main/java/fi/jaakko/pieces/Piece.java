@@ -63,4 +63,8 @@ public abstract class Piece {
      * @return palauttaa sallitut siirrot listana
      */
     public abstract List<int[]> moves();
+    
+    public abstract List<int[]> regularMoves();
+    
+    public abstract List<int[]> capture();
 }

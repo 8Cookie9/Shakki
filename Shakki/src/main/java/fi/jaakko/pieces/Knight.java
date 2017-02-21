@@ -27,8 +27,8 @@ public class Knight extends Piece {
     @Override
     public List<int[]> moves() {
         ArrayList<int[]> moves = new ArrayList<>();
-        moves.addAll(this.regularMoves());
-        moves.addAll(this.capture());
+        moves.addAll(regularMoves());
+        moves.addAll(capture());
         return moves;
     }
 
@@ -36,7 +36,9 @@ public class Knight extends Piece {
      *Siirrot, joilla kaapataan toinen nappula.
      * @return kaikki toisen napin kaappaavat siirrot
      */
+    @Override
     public List<int[]> capture() {
+        listMoves();
         return this.mv.stream()
                 .filter(i -> i[0] >= 0 && i[0] <= 7 && i[1] >= 0 && i[1] <= 7)
                 .filter(i -> super.getBoard()[i[0]][i[1]] != null)
@@ -48,7 +50,9 @@ public class Knight extends Piece {
      *Siirrot, joilla vain liikutaan.
      * @return kaikki siirrot, joilla vain liikutaan
      */
+    @Override
     public List<int[]> regularMoves() {
+        listMoves();
         return this.mv.stream()
                 .filter(i -> i[0] >= 0 && i[0] <= 7 && i[1] >= 0 && i[1] <= 7)
                 .filter(i -> super.getBoard()[i[0]][i[1]] == null)
@@ -73,6 +77,10 @@ public class Knight extends Piece {
      */
     @Override
     public String toString() {
-        return "[" + super.getColour() + "Knight]";
+        if(super.getColour()==Colour.BLACK){
+            return "♞";
+        }else{
+            return "♘";
+        }
     }
 }

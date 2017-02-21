@@ -35,6 +35,7 @@ public class King extends Piece {
      *Siirrot, joilla kaapataan toinen nappula.
      * @return kaikki toisen napin kaappaavat siirrot
      */
+    @Override
     public List<int[]> capture() {
         listMoves();
         return this.mv.stream()
@@ -48,6 +49,7 @@ public class King extends Piece {
      *Siirror, joilla ainoastaan liikutaan.
      * @return kaikki siirrot, joilla vain liikutaan
      */
+    @Override
     public List<int[]> regularMoves() {
         listMoves();
         return this.mv.stream()
@@ -74,6 +76,10 @@ public class King extends Piece {
      */
     @Override
     public String toString() {
-        return "[ " + super.getColour() + "King ]";
+        if(super.getColour()==Colour.BLACK){
+            return "♚";
+        }else{
+            return "♔";
+        }
     }
 }

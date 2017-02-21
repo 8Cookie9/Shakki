@@ -6,8 +6,6 @@ import java.util.List;
 
 public class Board {
 
-    private List<Piece> black;
-    private List<Piece> white;
     private Piece[][] board;
 
     /**
@@ -18,8 +16,6 @@ public class Board {
      */
     public Board(boolean b) {
         this.board = new Piece[8][8];
-        this.white = new ArrayList<>();
-        this.black = new ArrayList<>();
         if (b) {
             this.setup();
         }
@@ -27,62 +23,26 @@ public class Board {
 
     private void setup() { //laittaa pelinappulat alkuasemiin
         for (int i = 0; i < 8; i++) {
-            Piece b = new Pawn(this.board(), i, 6, Colour.BLACK);
-            this.addPiece(b);
-            this.black.add(b);
-            Piece w = new Pawn(this.board(), i, 1, Colour.WHITE);
-            this.addPiece(w);
-            this.white.add(w);
+            this.addPiece(new Pawn(this.board(), i, 6, Colour.BLACK));
+            this.addPiece(new Pawn(this.board(), i, 1, Colour.WHITE));
         }
         Piece b;
-        Piece w = new Rook(this.board(), 0, 0, Colour.WHITE);
-        this.addPiece(w);
-        this.addPiece(w);
-        w = new Rook(this.board(), 7, 0, Colour.WHITE);
-        this.addPiece(w);
-        this.addPiece(w);
-        w = new Knight(this.board(), 1, 0, Colour.WHITE);
-        this.addPiece(w);
-        this.addPiece(w);
-        w = new Knight(this.board(), 6, 0, Colour.WHITE);
-        this.addPiece(w);
-        this.addPiece(w);
-        w = new Bishop(this.board(), 2, 0, Colour.WHITE);
-        this.addPiece(w);
-        this.addPiece(w);
-        w = new Bishop(this.board(), 5, 0, Colour.WHITE);
-        this.addPiece(w);
-        this.addPiece(w);
-        w = new Queen(this.board(), 3, 0, Colour.WHITE);
-        this.addPiece(w);
-        this.addPiece(w);
-        w = new King(this.board(), 4, 0, Colour.WHITE);
-        this.addPiece(w);
-        this.addPiece(w);
-        b = new Rook(this.board(), 0, 7, Colour.BLACK);
-        this.addPiece(b);
-        this.black.add(b);
-        b = new Rook(this.board(), 7, 7, Colour.BLACK);
-        this.addPiece(b);
-        this.black.add(b);
-        b = new Knight(this.board(), 1, 7, Colour.BLACK);
-        this.addPiece(b);
-        this.black.add(b);
-        b = new Knight(this.board(), 6, 7, Colour.BLACK);
-        this.addPiece(b);
-        this.black.add(b);
-        b = new Bishop(this.board(), 2, 7, Colour.BLACK);
-        this.addPiece(b);
-        this.black.add(b);
-        b = new Bishop(this.board(), 5, 7, Colour.BLACK);
-        this.addPiece(b);
-        this.black.add(b);
-        b = new Queen(this.board(), 3, 7, Colour.BLACK);
-        this.addPiece(b);
-        this.black.add(b);
-        b = new King(this.board(), 4, 7, Colour.BLACK);
-        this.addPiece(b);
-        this.black.add(b);
+        this.addPiece(new Rook(this.board(), 0, 0, Colour.WHITE));
+        this.addPiece(new Rook(this.board(), 7, 0, Colour.WHITE));
+        this.addPiece(new Knight(this.board(), 1, 0, Colour.WHITE));
+        this.addPiece(new Knight(this.board(), 6, 0, Colour.WHITE));
+        this.addPiece(new Bishop(this.board(), 2, 0, Colour.WHITE));
+        this.addPiece(new Bishop(this.board(), 5, 0, Colour.WHITE));
+        this.addPiece(new Queen(this.board(), 3, 0, Colour.WHITE));
+        this.addPiece(new King(this.board(), 4, 0, Colour.WHITE));
+        this.addPiece(new Rook(this.board(), 0, 7, Colour.BLACK));
+        this.addPiece(new Rook(this.board(), 7, 7, Colour.BLACK));
+        this.addPiece(new Knight(this.board(), 1, 7, Colour.BLACK));
+        this.addPiece(new Knight(this.board(), 6, 7, Colour.BLACK));
+        this.addPiece(new Bishop(this.board(), 2, 7, Colour.BLACK));
+        this.addPiece(new Bishop(this.board(), 5, 7, Colour.BLACK));
+        this.addPiece(new Queen(this.board(), 3, 7, Colour.BLACK));
+        this.addPiece(new King(this.board(), 4, 7, Colour.BLACK));
     }
     
     /**
@@ -102,11 +62,6 @@ public class Board {
     public void addPiece(Piece piece) {
         if (this.board[piece.getX()][piece.getY()] == null) {
             this.board[piece.getX()][piece.getY()] = piece;
-            if (piece.getColour().value() == 1) {
-                this.white.add(piece);
-            } else {
-                this.black.add(piece);
-            }
         }
     }
 
@@ -128,15 +83,47 @@ public class Board {
         this.board[x][y].move(x2, y2);
         this.board[x2][y2] = this.board[x][y];
         this.board[x][y] = null;
+        if(this.board[x2][y2].getClass()==new Pawn(new Board(false).board(),0,0,Colour.BLACK).getClass()){
+            if((this.board[x2][y2].getColour()==Colour.BLACK&&y2==0)||(this.board[x2][y2].getColour()==Colour.WHITE&&y2==7)){
+                this.board[x2][y2]=new Queen(this.board(),x2,y2,this.board[x2][y2].getColour());
+            }
+        }
         return true;
     }
 
     public List<Piece> getBlackPieces() {
-        return this.black;
+        ArrayList<Piece> black = new ArrayList<>();
+        for(Piece p1[]:this.board){
+            for(Piece p:p1){
+                if(p!=null){
+                    if(p.getColour().value()==-1){
+                        black.add(p);
+                    }
+                }
+            }
+        }
+        return black;
     }
 
     public List<Piece> getWhitePieces() {
-        return this.white;
+        ArrayList<Piece> white = new ArrayList<>();
+        for(Piece p1[]:this.board){
+            for(Piece p:p1){
+                if(p!=null){
+                    if(p.getColour().value()==1){
+                        white.add(p);
+                    }
+                }
+            }
+        }
+        return white;
+    }
+    
+    public List<Piece> getAllPieces(){
+        ArrayList<Piece> all = new ArrayList<>();
+        all.addAll(this.getBlackPieces());
+        all.addAll(this.getWhitePieces());
+        return all;
     }
 
     /**

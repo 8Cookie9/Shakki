@@ -32,6 +32,7 @@ public class Rook extends Piece {
      *Siirrot, joilla kaapataan toinen nappula.
      * @return kaikki toisen napin kaappaavat siirrot
      */
+    @Override
     public List<int[]> capture() {
         ArrayList<int[]> moves = new ArrayList<>();
         for (int i = Math.min(super.getX() + 1, 7); i < 8; i++) { //oikealle
@@ -73,6 +74,7 @@ public class Rook extends Piece {
      *Siirrot, joilla liikutaan.
      * @return kaikki siirrot, joilla vain liikutaan
      */
+    @Override
     public List<int[]> regularMoves() {
         ArrayList<int[]> moves = new ArrayList<>();
         for (int i = Math.min(super.getX() + 1, 7); i < 8; i++) { //oikealle
@@ -112,6 +114,10 @@ public class Rook extends Piece {
      */
     @Override
     public String toString() {
-        return "[ " + super.getColour() + "Rook ]";
+        if(super.getColour()==Colour.BLACK){
+            return "♜";
+        }else{
+            return "♖";
+        }
     }
 }

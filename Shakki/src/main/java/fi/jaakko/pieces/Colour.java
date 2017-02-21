@@ -18,7 +18,15 @@ public enum Colour {
     public int value() {
         return this.value;
     }
-
+    
+    public String col(){
+        if(this.value==1){
+            return "valkoinen";
+        }else{
+            return "musta";
+        }
+    }
+    
     /**
      *Väri tekstimuodossa.
      * 

@@ -32,6 +32,7 @@ public class Queen extends Piece {
      *Siirrot, joilla kaapataan toinen nappula.
      * @return kaikki toisen napin kaappaavat siirrot
      */
+    @Override
     public List<int[]> capture() {
         ArrayList<int[]> moves = new ArrayList<>();
         for (int i = 1; i < 8; i++) { //yläoikealle
@@ -113,6 +114,7 @@ public class Queen extends Piece {
      *Kaikkisiirrot, joilla vain liikutaan.
      * @return kaikki siirrot, joilla vain liikutaan
      */
+    @Override
     public List<int[]> regularMoves() {
         ArrayList<int[]> moves = new ArrayList<>();
         for (int i = 1; i < 8; i++) { //yläoikealle
@@ -188,6 +190,10 @@ public class Queen extends Piece {
      */
     @Override
     public String toString() {
-        return "[" + super.getColour() + "Queen ]";
+        if(super.getColour()==Colour.BLACK){
+            return "♛";
+        }else{
+            return "♕";
+        }
     }
 }

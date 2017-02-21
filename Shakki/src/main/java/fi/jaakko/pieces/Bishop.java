@@ -35,6 +35,7 @@ public class Bishop extends Piece {
      * 
      * @return kaikki toisen napin kaappaavat siirrot
      */
+    @Override
     public List<int[]> capture() {
         ArrayList<int[]> moves = new ArrayList<>();
         for (int i = 1; i < 8; i++) { //yläoikealle
@@ -85,6 +86,7 @@ public class Bishop extends Piece {
      * 
      * @return kaikki siirrot, joilla vain liikutaan
      */
+    @Override
     public List<int[]> regularMoves() {
         ArrayList<int[]> moves = new ArrayList<>();
         for (int i = 1; i < 8; i++) { //yläoikealle
@@ -133,6 +135,10 @@ public class Bishop extends Piece {
      */
     @Override
     public String toString() {
-        return "[" + super.getColour() + "Bishop]";
+        if(super.getColour()==Colour.BLACK){
+            return "♝";
+        }else{
+            return "♗";
+        }
     }
 }

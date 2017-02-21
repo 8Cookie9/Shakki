@@ -1,11 +1,13 @@
 package fi.jaakko.game;
 
 import fi.jaakko.pieces.Colour;
+import fi.jaakko.pieces.King;
 
 public class Game {
 
     private int turn;
     private Board board;
+    private Colour winner;
     
     /**
      * Luokka kuvaa peliä: pitää sisällään vuorojen vaihtumisen.
@@ -54,5 +56,23 @@ public class Game {
             return Colour.BLACK;
         }
     }
-
+    
+    public boolean gameOver(){
+        if(!this.board.getBlackPieces().stream().anyMatch(i -> i.getClass()==new King(new Board(false).board(),0,0,Colour.BLACK).getClass())){
+            this.winner=Colour.WHITE;
+            return true;
+        }else if(!this.board.getWhitePieces().stream().anyMatch(i -> i.getClass()==new King(new Board(false).board(),0,0,Colour.BLACK).getClass())){
+            this.winner=Colour.BLACK;
+            return true;
+        }
+        return false;
+    }
+    
+    public Colour getWinner(){
+        return this.winner;
+    }
+    
+    public Board getBoard(){
+        return this.board;
+    }
 }
