@@ -78,7 +78,9 @@ public class ChessListener implements MouseListener{
                 label.setOpaque(true);
                 int x2=x1;
                 int y2=y1;
-                if(this.capture.stream().anyMatch(i->i[0]==x2&&i[1]==y2)){
+                if(this.chosenX==x2&&this.chosenY==y2&&this.chosen){
+                    label.setBackground(Color.yellow);
+                }else if(this.capture.stream().anyMatch(i->i[0]==x2&&i[1]==y2)){
                     label.setBackground(Color.red);
                 }else if(this.regularMoves.stream().anyMatch(i->i[0]==x2&&i[1]==y2)){
                     label.setBackground(Color.green);
