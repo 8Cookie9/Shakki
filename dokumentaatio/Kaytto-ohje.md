@@ -12,7 +12,7 @@ Tällöin peli ilmoittaa kumpi voitti pelin, painamalla "ok"-nappia, alkaa uusi 
 
 **Tiedetyt bugit**
 
--
+Ei bugeja tiedossa.
 
 **Puuttuvat ominaisuudet**
 
