@@ -34,3 +34,5 @@ ChessGUI-luokka pitä sisällään graafisen käyttöliittymän, sekä ChessList
 ![Sekvenssikaavio](OnnistunutSiirto.png)
 
 ![Sekvenssikaavio](EpäonnistunutSiirto.png)
+
+![Sekvenssikaavio](NappulanSyominen.png)
