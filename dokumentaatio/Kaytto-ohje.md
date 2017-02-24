@@ -11,6 +11,7 @@ Peli päättyy, kun jomman kumman pelaajan kuningas syödään.
 Tällöin peli ilmoittaa kumpi voitti pelin, painamalla "ok"-nappia, alkaa uusi peli.
 
 **Tiedetyt bugit**
+
 -
 
 **Puuttuvat ominaisuudet**
