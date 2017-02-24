@@ -7,8 +7,7 @@ Nappulat joiden tausta on vaalean keltainen, ovat sen pelaajan, jonka vuoro sill
 Kun jotain näistä nappuloista klikkaa hiirellä, vaihtuu sen väri kirkkaan keltaiseksi, mikä tarkoittaa, että se on valittu sillä hetkellä. 
 Näkyviin tulee mahdollisesti vihreitä ja punaisia ruutuja, jotka näyttävät, minne nappulan voi siirtää shakin sääntöjen mukaan. 
 Punainen ruuru tarkoittaa, että siirrolla syödään toinen vastustajan nappula, kun taas vihreät ovat vain liikkumiseen käytettäviä siirtoja. 
-Peli päättyy, kun jomman kumman pelaajan kuningas syödään. 
-Tällöin peli ilmoittaa kumpi voitti pelin, painamalla "ok"-nappia, alkaa uusi peli.
+Peli päättyy, kun jomman kumman pelaajan kuningas syödään. Tällöin peli ilmoittaa kumpi voitti pelin, painamalla "ok"-nappia, alkaa uusi peli. Shakki-pelin voi lopettaa painamalla rastia ikkunan yläkulmassa.
 
 **Tiedetyt bugit**
 
