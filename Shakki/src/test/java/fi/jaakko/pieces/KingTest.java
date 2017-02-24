@@ -77,6 +77,9 @@ public class KingTest {
 
     @Test
     public void testToString() {
-        assertEquals("[ WKing ]", this.king.toString());
+        King black = new King(new Board(false).board(),0,0,Colour.BLACK);
+        King white = new King(new Board(false).board(),0,0,Colour.WHITE);
+        assertEquals("♚",black.toString());
+        assertEquals("♔",white.toString());
     }
 }

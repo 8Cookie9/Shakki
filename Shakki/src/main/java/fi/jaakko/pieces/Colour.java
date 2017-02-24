@@ -11,25 +11,29 @@ public enum Colour {
     }
 
     /**
-     *Arvo värille.
-     * 
+     * Arvo värille.
+     *
      * @return värin numeroarvo: WHITE = 1; BLACK = -1
      */
     public int value() {
         return this.value;
     }
     
-    public String col(){
-        if(this.value==1){
-            return "valkoinen";
-        }else{
-            return "musta";
+    /**
+     * Värin nimi, käytetään pelin voittamisen yhtedessä.
+     * @return palauttaa joko "Valkoinen" tai "Musta" riippuen väristä.
+     */
+    public String col() {
+        if (this.value == 1) {
+            return "Valkoinen";
+        } else {
+            return "Musta";
         }
     }
-    
+
     /**
-     *Väri tekstimuodossa.
-     * 
+     * Väri tekstimuodossa.
+     *
      * @return Värin ensimmäinen kirjain: WHITE = "W"; BLACK = "B"
      */
     @Override

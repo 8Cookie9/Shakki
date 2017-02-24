@@ -58,7 +58,18 @@ public class PawnTest {
         board.addPiece(p);
         assertTrue(!pawn.capture().isEmpty());
     }
-
+    
+    @Test
+    public void voiKaapataKaikki() {
+        Pawn p1 = new Pawn(board.board(), 1, 2, Colour.BLACK);
+        Pawn p2 = new Pawn(board.board(), 0, 1, Colour.WHITE);
+        Pawn p3 = new Pawn(board.board(), 2, 1, Colour.WHITE);
+        board.addPiece(p1);
+        board.addPiece(p2);
+        board.addPiece(p3);
+        assertTrue(p1.capture().stream().allMatch(i->(i[0]==0&&i[1]==1)||(i[0]==2&&i[1]==1)));
+    }
+    
     @Test
     public void eiVoiKaapata() {
         assertTrue(pawn.capture().isEmpty());
@@ -87,6 +98,9 @@ public class PawnTest {
 
     @Test
     public void testToString() {
-        assertEquals("[ WPawn ]", this.pawn.toString());
+        Pawn black = new Pawn(new Board(false).board(),0,0,Colour.BLACK);
+        Pawn white = new Pawn(new Board(false).board(),0,0,Colour.WHITE);
+        assertEquals("♟",black.toString());
+        assertEquals("♙",white.toString());
     }
 }

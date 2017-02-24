@@ -13,5 +13,11 @@ public class ColourTest {
         assertEquals("B", Colour.BLACK.toString());
         assertEquals("W", Colour.WHITE.toString());
     }
+    
+    @Test
+    public void testCol() {
+        assertEquals("Musta", Colour.BLACK.col());
+        assertEquals("Valkoinen", Colour.WHITE.col());
+    }
 
 }

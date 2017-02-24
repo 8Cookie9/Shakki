@@ -6,8 +6,8 @@ import java.util.List;
 public class Bishop extends Piece {
 
     /**
-     *Nappula Bishop ja sen toiminta.
-     * 
+     * Nappula Bishop ja sen toiminta.
+     *
      * @param board mihin lautaan nappula kuuluu
      * @param x nappulan x-koordinaatti
      * @param y nappulan y-koordinaatti
@@ -18,8 +18,8 @@ public class Bishop extends Piece {
     }
 
     /**
-     *Kerää kaikki sallitut siirrot.
-     * 
+     * Kerää kaikki sallitut siirrot.
+     *
      * @return kaikki sallitut siirrot
      */
     @Override
@@ -31,8 +31,8 @@ public class Bishop extends Piece {
     }
 
     /**
-     *Sirrot, joilla kaapataan nappula.
-     * 
+     * Sirrot, joilla kaapataan nappula.
+     *
      * @return kaikki toisen napin kaappaavat siirrot
      */
     @Override
@@ -82,8 +82,8 @@ public class Bishop extends Piece {
     }
 
     /**
-     *Siirrot, joilla liikutaan.
-     * 
+     * Siirrot, joilla liikutaan.
+     *
      * @return kaikki siirrot, joilla vain liikutaan
      */
     @Override
@@ -129,15 +129,15 @@ public class Bishop extends Piece {
     }
 
     /**
-     *Bishop tekstimuodossa.
-     * 
+     * Bishop tekstimuodossa.
+     *
      * @return Pelinappula tekstimuodossa väri (B tai W) + nimi
      */
     @Override
     public String toString() {
-        if(super.getColour()==Colour.BLACK){
+        if (super.getColour() == Colour.BLACK) {
             return "♝";
-        }else{
+        } else {
             return "♗";
         }
     }

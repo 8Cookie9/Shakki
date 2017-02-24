@@ -7,9 +7,10 @@ import java.util.Scanner;
 import javax.swing.SwingUtilities;
 
 public class Main {
-    
+
     /**
-     * Graafinen käyttöliittymä
+     * Graafinen käyttöliittymä.
+     *
      * @param args komentorivi argumentit, ei käytetä
      */
     public static void main(final String[] args) {

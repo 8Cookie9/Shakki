@@ -6,13 +6,12 @@ public abstract class Piece {
 
     private int x;
     private int y;
-    private int moves;
     private final Colour colour;
     private final Piece[][] board;
 
     /**
-     *Nappulan toiminta.
-     * 
+     * Nappulan toiminta.
+     *
      * @param board mihin lautaan nappula kuuluu
      * @param x nappulan x-koordinaatti
      * @param y nappulan y-koordinaatti
@@ -23,7 +22,6 @@ public abstract class Piece {
         this.y = y;
         this.colour = c;
         this.board = board;
-        this.moves = 0;
     }
 
     public Colour getColour() {
@@ -38,10 +36,6 @@ public abstract class Piece {
         return this.y;
     }
 
-    public int getMoves() {
-        return this.moves;
-    }
-
     /**
      * Siirtää nappulan uuteen paikkaan.
      *
@@ -51,7 +45,6 @@ public abstract class Piece {
     public void move(int newx, int newy) {
         this.x = newx;
         this.y = newy;
-        this.moves++;
     }
 
     public Piece[][] getBoard() {
@@ -59,12 +52,21 @@ public abstract class Piece {
     }
 
     /**
-     *Kaikki sallitut siirrot.
+     * Kaikki sallitut siirrot.
+     *
      * @return palauttaa sallitut siirrot listana
      */
     public abstract List<int[]> moves();
     
+    /**
+     * Palauttaa kaikki siirrot, joilla pelkästään liikutaan.
+     * @return Siirrot listana.
+     */
     public abstract List<int[]> regularMoves();
-    
+
+    /**
+     * Palauttaa kaikki siirrot, joilla kaapataan toinen nappula.
+     * @return Siirrot listana.
+     */
     public abstract List<int[]> capture();
 }

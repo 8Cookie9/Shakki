@@ -59,6 +59,50 @@ public class QueenTest {
         assertTrue(queen.capture().stream().anyMatch(i -> i[0] == 3 && i[1] == 2));
         assertTrue(queen.capture().stream().anyMatch(i -> i[0] == 2 && i[1] == 3));
     }
+    
+    @Test
+    public void regularMovesToimiiNormaalisti() {
+        board.addPiece(new Queen(board.board(), 2, 4, Colour.BLACK));
+        board.addPiece(new Queen(board.board(), 3, 4, Colour.BLACK));
+        board.addPiece(new Queen(board.board(), 4, 4, Colour.BLACK));
+        board.addPiece(new Queen(board.board(), 4, 3, Colour.BLACK));
+        board.addPiece(new Queen(board.board(), 4, 2, Colour.BLACK));
+        board.addPiece(new Queen(board.board(), 3, 2, Colour.BLACK));
+        board.addPiece(new Queen(board.board(), 2, 2, Colour.BLACK));
+        board.addPiece(new Queen(board.board(), 2, 3, Colour.BLACK));
+        assertTrue(queen.regularMoves().isEmpty());
+    }
+    
+    @Test
+    public void regularMovesToimiiNormaalisti2() {
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==0&&i[1]==3));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==1&&i[1]==3));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==2&&i[1]==3));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==4&&i[1]==3));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==5&&i[1]==3));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==6&&i[1]==3));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==7&&i[1]==3));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==3&&i[1]==0));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==3&&i[1]==1));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==3&&i[1]==2));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==3&&i[1]==4));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==3&&i[1]==5));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==3&&i[1]==6));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==3&&i[1]==7));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==0&&i[1]==0));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==1&&i[1]==1));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==2&&i[1]==2));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==4&&i[1]==4));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==5&&i[1]==5));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==6&&i[1]==6));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==7&&i[1]==7));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==4&&i[1]==2));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==5&&i[1]==1));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==6&&i[1]==0));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==2&&i[1]==4));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==1&&i[1]==5));
+        assertTrue(queen.regularMoves().stream().anyMatch(i->i[0]==0&&i[1]==6));
+    }
 
     @Test
     public void eiMeneRajojenYli() {
@@ -81,6 +125,9 @@ public class QueenTest {
 
     @Test
     public void testToString() {
-        assertEquals("[WQueen ]", this.queen.toString());
+        Queen black = new Queen(new Board(false).board(),0,0,Colour.BLACK);
+        Queen white = new Queen(new Board(false).board(),0,0,Colour.WHITE);
+        assertEquals("♛",black.toString());
+        assertEquals("♕",white.toString());
     }
 }

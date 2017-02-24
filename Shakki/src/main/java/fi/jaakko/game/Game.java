@@ -8,16 +8,25 @@ public class Game {
     private int turn;
     private Board board;
     private Colour winner;
-    
+
     /**
      * Luokka kuvaa peliä: pitää sisällään vuorojen vaihtumisen.
-     * 
+     *
      * @param board pelilauta jolla pelataan
      */
     public Game(Board board) {
         this.turn = 1;
         this.board = board;
     }
+
+    /**
+     * Aloittaa uuden pelin.
+     */
+    public void newGame() {
+        this.board = new Board(true);
+        this.turn = 1;
+    }
+
     /**
      * Seuraava vuoro.
      */
@@ -43,10 +52,10 @@ public class Game {
         }
         return false;
     }
-    
+
     /**
      * Kenen vuoro on.
-     * 
+     *
      * @return palauttaa pelaajan nappuloiden värin, jonka vuoro on
      */
     public Colour getCurrentColour() {
@@ -56,23 +65,31 @@ public class Game {
             return Colour.BLACK;
         }
     }
-    
-    public boolean gameOver(){
-        if(!this.board.getBlackPieces().stream().anyMatch(i -> i.getClass()==new King(new Board(false).board(),0,0,Colour.BLACK).getClass())){
-            this.winner=Colour.WHITE;
+
+    /**
+     * Kertoo onko peli loppunut.
+     * @return true - peli loppu; false - ei
+     */
+    public boolean gameOver() {
+        if (!this.board.getBlackPieces().stream().anyMatch(i -> i.getClass() == new King(new Board(false).board(), 0, 0, Colour.BLACK).getClass())) {
+            this.winner = Colour.WHITE;
             return true;
-        }else if(!this.board.getWhitePieces().stream().anyMatch(i -> i.getClass()==new King(new Board(false).board(),0,0,Colour.BLACK).getClass())){
-            this.winner=Colour.BLACK;
+        } else if (!this.board.getWhitePieces().stream().anyMatch(i -> i.getClass() == new King(new Board(false).board(), 0, 0, Colour.BLACK).getClass())) {
+            this.winner = Colour.BLACK;
             return true;
         }
         return false;
     }
     
-    public Colour getWinner(){
+    /**
+     * Palauttaa voittajan.
+     * @return voittajan väri (Colour)
+     */
+    public Colour getWinner() {
         return this.winner;
     }
-    
-    public Board getBoard(){
+
+    public Board getBoard() {
         return this.board;
     }
 }

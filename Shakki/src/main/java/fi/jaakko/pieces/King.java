@@ -10,6 +10,7 @@ public class King extends Piece {
 
     /**
      * King-nappulan toiminta.
+     *
      * @param board mihin lautaan nappula kuuluu
      * @param x nappulan x-koordinaatti
      * @param y nappulan y-koordinaatti
@@ -20,7 +21,8 @@ public class King extends Piece {
     }
 
     /**
-     *Kaikki sallitut siirrot.
+     * Kaikki sallitut siirrot.
+     *
      * @return kaikki sallitut siirrot
      */
     @Override
@@ -32,7 +34,8 @@ public class King extends Piece {
     }
 
     /**
-     *Siirrot, joilla kaapataan toinen nappula.
+     * Siirrot, joilla kaapataan toinen nappula.
+     *
      * @return kaikki toisen napin kaappaavat siirrot
      */
     @Override
@@ -46,7 +49,8 @@ public class King extends Piece {
     }
 
     /**
-     *Siirror, joilla ainoastaan liikutaan.
+     * Siirror, joilla ainoastaan liikutaan.
+     *
      * @return kaikki siirrot, joilla vain liikutaan
      */
     @Override
@@ -71,14 +75,15 @@ public class King extends Piece {
     }
 
     /**
-     *King tekstimuodossa.
+     * King tekstimuodossa.
+     *
      * @return Pelinappula tekstimuodossa väri (B tai W) + nimi
      */
     @Override
     public String toString() {
-        if(super.getColour()==Colour.BLACK){
+        if (super.getColour() == Colour.BLACK) {
             return "♚";
-        }else{
+        } else {
             return "♔";
         }
     }

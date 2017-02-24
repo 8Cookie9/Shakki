@@ -67,6 +67,24 @@ public class BishopTest {
         assertFalse(k3.moves().stream().anyMatch(i -> i[0] < 0 || i[1] < 0 || i[0] > 7 || i[1] > 7));
         assertFalse(k4.moves().stream().anyMatch(i -> i[0] < 0 || i[1] < 0 || i[0] > 7 || i[1] > 7));
     }
+    
+    @Test
+    public void regularMovesToimiiNormaalisti() {
+        Bishop bis = new Bishop(new Board(false).board(),3,3,Colour.BLACK);
+        assertTrue(bis.regularMoves().stream().anyMatch(i->i[0]==0&&i[1]==0));
+        assertTrue(bis.regularMoves().stream().anyMatch(i->i[0]==1&&i[1]==1));
+        assertTrue(bis.regularMoves().stream().anyMatch(i->i[0]==2&&i[1]==2));
+        assertTrue(bis.regularMoves().stream().anyMatch(i->i[0]==4&&i[1]==4));
+        assertTrue(bis.regularMoves().stream().anyMatch(i->i[0]==5&&i[1]==5));
+        assertTrue(bis.regularMoves().stream().anyMatch(i->i[0]==6&&i[1]==6));
+        assertTrue(bis.regularMoves().stream().anyMatch(i->i[0]==7&&i[1]==7));
+        assertTrue(bis.regularMoves().stream().anyMatch(i->i[0]==4&&i[1]==2));
+        assertTrue(bis.regularMoves().stream().anyMatch(i->i[0]==5&&i[1]==1));
+        assertTrue(bis.regularMoves().stream().anyMatch(i->i[0]==6&&i[1]==0));
+        assertTrue(bis.regularMoves().stream().anyMatch(i->i[0]==2&&i[1]==4));
+        assertTrue(bis.regularMoves().stream().anyMatch(i->i[0]==1&&i[1]==5));
+        assertTrue(bis.regularMoves().stream().anyMatch(i->i[0]==0&&i[1]==6));
+    }
 
     @Test
     public void eiVoiSiirtyäPaikallaan() {
@@ -77,6 +95,9 @@ public class BishopTest {
 
     @Test
     public void testToString() {
-        assertEquals("[WBishop]", this.bishop.toString());
+        Bishop black = new Bishop(new Board(false).board(),0,0,Colour.BLACK);
+        Bishop white = new Bishop(new Board(false).board(),0,0,Colour.WHITE);
+        assertEquals("♝",black.toString());
+        assertEquals("♗",white.toString());
     }
 }

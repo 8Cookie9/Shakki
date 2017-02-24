@@ -6,8 +6,8 @@ import java.util.List;
 public class Pawn extends Piece {
 
     /**
-     *Pawn-nappulan toiminta.
-     * 
+     * Pawn-nappulan toiminta.
+     *
      * @param board mihin lautaan nappula kuuluu
      * @param x nappulan x-koordinaatti
      * @param y nappulan y-koordinaatti
@@ -18,8 +18,8 @@ public class Pawn extends Piece {
     }
 
     /**
-     *Kerää kaikki sallitut siirrot yhteen.
-     * 
+     * Kerää kaikki sallitut siirrot yhteen.
+     *
      * @return kaikki sallitut siirrot
      */
     @Override
@@ -30,10 +30,9 @@ public class Pawn extends Piece {
         return moves;
     }
 
-
     /**
-     *Siirrot joilla kaapataan nappula.
-     * 
+     * Siirrot joilla kaapataan nappula.
+     *
      * @return kaikki toisen napin kaappaavat siirrot
      */
     @Override
@@ -58,8 +57,8 @@ public class Pawn extends Piece {
     }
 
     /**
-     *Liikkumissiirrot.
-     * 
+     * Liikkumissiirrot.
+     *
      * @return kaikki siirrot, joilla vain liikutaan
      */
     @Override
@@ -82,15 +81,15 @@ public class Pawn extends Piece {
     }
 
     /**
-     *Tekstimuoto nappulalle.
-     * 
+     * Tekstimuoto nappulalle.
+     *
      * @return Pelinappula tekstimuodossa väri (B tai W) + nimi
      */
     @Override
     public String toString() {
-        if(super.getColour()==Colour.BLACK){
+        if (super.getColour() == Colour.BLACK) {
             return "♟";
-        }else{
+        } else {
             return "♙";
         }
     }

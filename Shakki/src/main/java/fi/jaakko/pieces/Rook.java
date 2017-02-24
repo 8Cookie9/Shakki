@@ -6,7 +6,8 @@ import java.util.List;
 public class Rook extends Piece {
 
     /**
-     *Rook-nappulan toiminta.
+     * Rook-nappulan toiminta.
+     *
      * @param board mihin lautaan nappula kuuluu
      * @param x nappulan x-koordinaatti
      * @param y nappulan y-koordinaatti
@@ -17,7 +18,8 @@ public class Rook extends Piece {
     }
 
     /**
-     *Kaikki sallitut siirrot.
+     * Kaikki sallitut siirrot.
+     *
      * @return kaikki sallitut siirrot
      */
     @Override
@@ -29,7 +31,8 @@ public class Rook extends Piece {
     }
 
     /**
-     *Siirrot, joilla kaapataan toinen nappula.
+     * Siirrot, joilla kaapataan toinen nappula.
+     *
      * @return kaikki toisen napin kaappaavat siirrot
      */
     @Override
@@ -71,7 +74,8 @@ public class Rook extends Piece {
     }
 
     /**
-     *Siirrot, joilla liikutaan.
+     * Siirrot, joilla liikutaan.
+     *
      * @return kaikki siirrot, joilla vain liikutaan
      */
     @Override
@@ -109,14 +113,15 @@ public class Rook extends Piece {
     }
 
     /**
-     *Rook tekstimuodossa.
+     * Rook tekstimuodossa.
+     *
      * @return Pelinappula tekstimuodossa väri (B tai W) + nimi
      */
     @Override
     public String toString() {
-        if(super.getColour()==Colour.BLACK){
+        if (super.getColour() == Colour.BLACK) {
             return "♜";
-        }else{
+        } else {
             return "♖";
         }
     }

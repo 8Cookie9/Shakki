@@ -9,8 +9,8 @@ public class Board {
     private Piece[][] board;
 
     /**
-     *Shakkilautaa kuvaava luokka.
-     * 
+     * Shakkilautaa kuvaava luokka.
+     *
      * @param b jos true, luodaan shakkilauta ja laitetaan sinne nappulat
      * alkuasetelmaan; jos false, luodaan tyhjä shakilauta (testaamista varten)
      */
@@ -44,10 +44,10 @@ public class Board {
         this.addPiece(new Queen(this.board(), 3, 7, Colour.BLACK));
         this.addPiece(new King(this.board(), 4, 7, Colour.BLACK));
     }
-    
+
     /**
      * Palauttaa pelilaudan.
-     * 
+     *
      * @return pelilauta (mitä missäkin ruudussa)
      */
     public Piece[][] board() {
@@ -66,8 +66,8 @@ public class Board {
     }
 
     /**
-     *Yrittää siirtää nappulaa toiseen paikkaan sääntöjä noudattaen.
-     * 
+     * Yrittää siirtää nappulaa toiseen paikkaan sääntöjä noudattaen.
+     *
      * @param x Siirrettävän nappulan x-koordinaatti
      * @param y Siirrettävän nappulan y-koordinaatti
      * @param x2 X-koordinaatti, jonne nappula yritetään siirtää
@@ -83,20 +83,25 @@ public class Board {
         this.board[x][y].move(x2, y2);
         this.board[x2][y2] = this.board[x][y];
         this.board[x][y] = null;
-        if(this.board[x2][y2].getClass()==new Pawn(new Board(false).board(),0,0,Colour.BLACK).getClass()){
-            if((this.board[x2][y2].getColour()==Colour.BLACK&&y2==0)||(this.board[x2][y2].getColour()==Colour.WHITE&&y2==7)){
-                this.board[x2][y2]=new Queen(this.board(),x2,y2,this.board[x2][y2].getColour());
+        if (this.board[x2][y2].getClass() == new Pawn(new Board(false).board(), 0, 0, Colour.BLACK).getClass()) {
+            if ((this.board[x2][y2].getColour() == Colour.BLACK && y2 == 0) || (this.board[x2][y2].getColour() == Colour.WHITE && y2 == 7)) {
+                this.board[x2][y2] = new Queen(this.board(), x2, y2, this.board[x2][y2].getColour());
             }
         }
         return true;
     }
 
+    /**
+     * Palauttaa mustat nappulat listana.
+     *
+     * @return mustat nappulat
+     */
     public List<Piece> getBlackPieces() {
         ArrayList<Piece> black = new ArrayList<>();
-        for(Piece p1[]:this.board){
-            for(Piece p:p1){
-                if(p!=null){
-                    if(p.getColour().value()==-1){
+        for (Piece p1[] : this.board) {
+            for (Piece p : p1) {
+                if (p != null) {
+                    if (p.getColour().value() == -1) {
                         black.add(p);
                     }
                 }
@@ -105,12 +110,17 @@ public class Board {
         return black;
     }
 
+    /**
+     * Palauttaa valkoiset nappulat listana.
+     *
+     * @return valkoiset nappulat
+     */
     public List<Piece> getWhitePieces() {
         ArrayList<Piece> white = new ArrayList<>();
-        for(Piece p1[]:this.board){
-            for(Piece p:p1){
-                if(p!=null){
-                    if(p.getColour().value()==1){
+        for (Piece p1[] : this.board) {
+            for (Piece p : p1) {
+                if (p != null) {
+                    if (p.getColour().value() == 1) {
                         white.add(p);
                     }
                 }
@@ -118,36 +128,16 @@ public class Board {
         }
         return white;
     }
-    
-    public List<Piece> getAllPieces(){
+
+    /**
+     * Palauttaa kaikki nappulat listana.
+     *
+     * @return kaikki nappulat
+     */
+    public List<Piece> getAllPieces() {
         ArrayList<Piece> all = new ArrayList<>();
         all.addAll(this.getBlackPieces());
         all.addAll(this.getWhitePieces());
         return all;
-    }
-
-    /**
-     *Pelilauta tekstimuodossa tekstikäyttöliittymää varten.
-     * 
-     * @return palauttaa shakkilaudan ja nappuloiden tekstimuotoisen esityksen;
-     * käytetään testausta varten
-     */
-    @Override
-    public String toString() {
-        String s = "";
-        s += "    0        1        2        3        4        5        6        7\n";
-        for (int y = 0; y < 8; y++) {
-            s += "" + y;
-            for (int x = 0; x < 8; x++) {
-                if (this.board[x][y] != null) {
-                    s += this.board[x][y].toString();
-                } else {
-                    s += "[       ]";
-                }
-            }
-            s += "" + y + "\n";
-        }
-        s += "    0        1        2        3        4        5        6        7\n";
-        return s;
     }
 }

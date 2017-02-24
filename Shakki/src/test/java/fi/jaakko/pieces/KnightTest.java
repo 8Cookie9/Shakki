@@ -75,6 +75,9 @@ public class KnightTest {
 
     @Test
     public void testToString() {
-        assertEquals("[WKnight]", this.knight.toString());
+        Knight black = new Knight(new Board(false).board(),0,0,Colour.BLACK);
+        Knight white = new Knight(new Board(false).board(),0,0,Colour.WHITE);
+        assertEquals("♞",black.toString());
+        assertEquals("♘",white.toString());
     }
 }

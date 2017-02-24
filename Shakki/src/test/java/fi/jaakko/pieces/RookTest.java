@@ -66,6 +66,25 @@ public class RookTest {
         assertFalse(this.rook.regularMoves().stream().anyMatch(i -> i[0] == 0 && i[1] == 3));
         assertFalse(this.rook.regularMoves().stream().anyMatch(i -> i[0] == 7 && i[1] == 3));
     }
+    
+    @Test
+    public void regularMovesToimiiNormaalisti() {
+        Rook r = new Rook(new Board(false).board(),3,3,Colour.BLACK);
+        assertTrue(r.regularMoves().stream().anyMatch(i->i[0]==0&&i[1]==3));
+        assertTrue(r.regularMoves().stream().anyMatch(i->i[0]==1&&i[1]==3));
+        assertTrue(r.regularMoves().stream().anyMatch(i->i[0]==2&&i[1]==3));
+        assertTrue(r.regularMoves().stream().anyMatch(i->i[0]==4&&i[1]==3));
+        assertTrue(r.regularMoves().stream().anyMatch(i->i[0]==5&&i[1]==3));
+        assertTrue(r.regularMoves().stream().anyMatch(i->i[0]==6&&i[1]==3));
+        assertTrue(r.regularMoves().stream().anyMatch(i->i[0]==7&&i[1]==3));
+        assertTrue(r.regularMoves().stream().anyMatch(i->i[0]==3&&i[1]==0));
+        assertTrue(r.regularMoves().stream().anyMatch(i->i[0]==3&&i[1]==1));
+        assertTrue(r.regularMoves().stream().anyMatch(i->i[0]==3&&i[1]==2));
+        assertTrue(r.regularMoves().stream().anyMatch(i->i[0]==3&&i[1]==4));
+        assertTrue(r.regularMoves().stream().anyMatch(i->i[0]==3&&i[1]==5));
+        assertTrue(r.regularMoves().stream().anyMatch(i->i[0]==3&&i[1]==6));
+        assertTrue(r.regularMoves().stream().anyMatch(i->i[0]==3&&i[1]==7));
+    }
 
     @Test
     public void eiMeneRajojenYli() {
@@ -81,6 +100,9 @@ public class RookTest {
 
     @Test
     public void testToString() {
-        assertEquals("[ WRook ]", this.rook.toString());
+        Rook black = new Rook(new Board(false).board(),0,0,Colour.BLACK);
+        Rook white = new Rook(new Board(false).board(),0,0,Colour.WHITE);
+        assertEquals("♜",black.toString());
+        assertEquals("♖",white.toString());
     }
 }
