@@ -65,14 +65,14 @@ public class BoardTest {
     @Test
     public void addPieceLisaaTyhjaan() {
         Board board = new Board(true);
-        board.addPiece(new Pawn(board.board(), 3, 3, Colour.BLACK));
+        board.addPiece(new Pawn(board, 3, 3, Colour.BLACK));
         assertTrue(board.board()[3][3].toString().equals("♟"));
     }
 
     @Test
     public void addPieceEiLisaaToisenPaalla() {
         Board board = new Board(true);
-        board.addPiece(new Pawn(board.board(), 0, 0, Colour.BLACK));
+        board.addPiece(new Pawn(board, 0, 0, Colour.BLACK));
         assertTrue(board.board()[0][0].toString().equals("♖"));
     }
 

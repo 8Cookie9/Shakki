@@ -1,5 +1,6 @@
 package fi.jaakko.pieces;
 
+import fi.jaakko.game.Board;
 import java.util.List;
 
 public abstract class Piece {
@@ -7,7 +8,7 @@ public abstract class Piece {
     private int x;
     private int y;
     private final Colour colour;
-    private final Piece[][] board;
+    private final Board board;
 
     /**
      * Nappulan toiminta.
@@ -17,7 +18,7 @@ public abstract class Piece {
      * @param y nappulan y-koordinaatti
      * @param c nappulan väri
      */
-    public Piece(Piece[][] board, int x, int y, Colour c) {
+    public Piece(Board board, int x, int y, Colour c) {
         this.x = x;
         this.y = y;
         this.colour = c;
@@ -47,7 +48,7 @@ public abstract class Piece {
         this.y = newy;
     }
 
-    public Piece[][] getBoard() {
+    public Board getBoard() {
         return this.board;
     }
 

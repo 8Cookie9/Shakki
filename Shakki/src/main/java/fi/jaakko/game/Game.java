@@ -71,10 +71,10 @@ public class Game {
      * @return true - peli loppu; false - ei
      */
     public boolean gameOver() {
-        if (!this.board.getBlackPieces().stream().anyMatch(i -> i.getClass() == new King(new Board(false).board(), 0, 0, Colour.BLACK).getClass())) {
+        if (!this.board.getBlackPieces().stream().anyMatch(i -> i.getClass() == new King(new Board(false), 0, 0, Colour.BLACK).getClass())) {
             this.winner = Colour.WHITE;
             return true;
-        } else if (!this.board.getWhitePieces().stream().anyMatch(i -> i.getClass() == new King(new Board(false).board(), 0, 0, Colour.BLACK).getClass())) {
+        } else if (!this.board.getWhitePieces().stream().anyMatch(i -> i.getClass() == new King(new Board(false), 0, 0, Colour.BLACK).getClass())) {
             this.winner = Colour.BLACK;
             return true;
         }

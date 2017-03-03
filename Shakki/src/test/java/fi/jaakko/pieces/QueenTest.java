@@ -18,7 +18,7 @@ public class QueenTest {
     @Before
     public void setUp() {
         board = new Board(false);
-        queen = new Queen(board.board(), 3, 3, Colour.WHITE);
+        queen = new Queen(board, 3, 3, Colour.WHITE);
         board.addPiece(queen);
     }
 
@@ -29,27 +29,27 @@ public class QueenTest {
 
     @Test
     public void captureEiSamanvarista() {
-        board.addPiece(new Queen(board.board(), 2, 4, Colour.WHITE));
-        board.addPiece(new Queen(board.board(), 3, 4, Colour.WHITE));
-        board.addPiece(new Queen(board.board(), 4, 4, Colour.WHITE));
-        board.addPiece(new Queen(board.board(), 4, 3, Colour.WHITE));
-        board.addPiece(new Queen(board.board(), 4, 2, Colour.WHITE));
-        board.addPiece(new Queen(board.board(), 3, 2, Colour.WHITE));
-        board.addPiece(new Queen(board.board(), 2, 2, Colour.WHITE));
-        board.addPiece(new Queen(board.board(), 2, 3, Colour.WHITE));
+        board.addPiece(new Queen(board, 2, 4, Colour.WHITE));
+        board.addPiece(new Queen(board, 3, 4, Colour.WHITE));
+        board.addPiece(new Queen(board, 4, 4, Colour.WHITE));
+        board.addPiece(new Queen(board, 4, 3, Colour.WHITE));
+        board.addPiece(new Queen(board, 4, 2, Colour.WHITE));
+        board.addPiece(new Queen(board, 3, 2, Colour.WHITE));
+        board.addPiece(new Queen(board, 2, 2, Colour.WHITE));
+        board.addPiece(new Queen(board, 2, 3, Colour.WHITE));
         assertTrue(queen.capture().isEmpty());
     }
 
     @Test
     public void captureToimiiNormaalisti() {
-        board.addPiece(new Queen(board.board(), 2, 4, Colour.BLACK));
-        board.addPiece(new Queen(board.board(), 3, 4, Colour.BLACK));
-        board.addPiece(new Queen(board.board(), 4, 4, Colour.BLACK));
-        board.addPiece(new Queen(board.board(), 4, 3, Colour.BLACK));
-        board.addPiece(new Queen(board.board(), 4, 2, Colour.BLACK));
-        board.addPiece(new Queen(board.board(), 3, 2, Colour.BLACK));
-        board.addPiece(new Queen(board.board(), 2, 2, Colour.BLACK));
-        board.addPiece(new Queen(board.board(), 2, 3, Colour.BLACK));
+        board.addPiece(new Queen(board, 2, 4, Colour.BLACK));
+        board.addPiece(new Queen(board, 3, 4, Colour.BLACK));
+        board.addPiece(new Queen(board, 4, 4, Colour.BLACK));
+        board.addPiece(new Queen(board, 4, 3, Colour.BLACK));
+        board.addPiece(new Queen(board, 4, 2, Colour.BLACK));
+        board.addPiece(new Queen(board, 3, 2, Colour.BLACK));
+        board.addPiece(new Queen(board, 2, 2, Colour.BLACK));
+        board.addPiece(new Queen(board, 2, 3, Colour.BLACK));
         assertTrue(queen.capture().stream().anyMatch(i -> i[0] == 2 && i[1] == 4));
         assertTrue(queen.capture().stream().anyMatch(i -> i[0] == 4 && i[1] == 4));
         assertTrue(queen.capture().stream().anyMatch(i -> i[0] == 4 && i[1] == 2));
@@ -62,14 +62,14 @@ public class QueenTest {
     
     @Test
     public void regularMovesToimiiNormaalisti() {
-        board.addPiece(new Queen(board.board(), 2, 4, Colour.BLACK));
-        board.addPiece(new Queen(board.board(), 3, 4, Colour.BLACK));
-        board.addPiece(new Queen(board.board(), 4, 4, Colour.BLACK));
-        board.addPiece(new Queen(board.board(), 4, 3, Colour.BLACK));
-        board.addPiece(new Queen(board.board(), 4, 2, Colour.BLACK));
-        board.addPiece(new Queen(board.board(), 3, 2, Colour.BLACK));
-        board.addPiece(new Queen(board.board(), 2, 2, Colour.BLACK));
-        board.addPiece(new Queen(board.board(), 2, 3, Colour.BLACK));
+        board.addPiece(new Queen(board, 2, 4, Colour.BLACK));
+        board.addPiece(new Queen(board, 3, 4, Colour.BLACK));
+        board.addPiece(new Queen(board, 4, 4, Colour.BLACK));
+        board.addPiece(new Queen(board, 4, 3, Colour.BLACK));
+        board.addPiece(new Queen(board, 4, 2, Colour.BLACK));
+        board.addPiece(new Queen(board, 3, 2, Colour.BLACK));
+        board.addPiece(new Queen(board, 2, 2, Colour.BLACK));
+        board.addPiece(new Queen(board, 2, 3, Colour.BLACK));
         assertTrue(queen.regularMoves().isEmpty());
     }
     
@@ -106,10 +106,10 @@ public class QueenTest {
 
     @Test
     public void eiMeneRajojenYli() {
-        Queen k1 = new Queen(board.board(), 1, 1, Colour.WHITE);
-        Queen k2 = new Queen(board.board(), 7, 7, Colour.WHITE);
-        Queen k3 = new Queen(board.board(), 7, 0, Colour.WHITE);
-        Queen k4 = new Queen(board.board(), 7, 7, Colour.WHITE);
+        Queen k1 = new Queen(board, 1, 1, Colour.WHITE);
+        Queen k2 = new Queen(board, 7, 7, Colour.WHITE);
+        Queen k3 = new Queen(board, 7, 0, Colour.WHITE);
+        Queen k4 = new Queen(board, 7, 7, Colour.WHITE);
         assertFalse(k1.moves().stream().anyMatch(i -> i[0] < 0 || i[1] < 0 || i[0] > 7 || i[1] > 7));
         assertFalse(k2.moves().stream().anyMatch(i -> i[0] < 0 || i[1] < 0 || i[0] > 7 || i[1] > 7));
         assertFalse(k3.moves().stream().anyMatch(i -> i[0] < 0 || i[1] < 0 || i[0] > 7 || i[1] > 7));
@@ -125,8 +125,8 @@ public class QueenTest {
 
     @Test
     public void testToString() {
-        Queen black = new Queen(new Board(false).board(),0,0,Colour.BLACK);
-        Queen white = new Queen(new Board(false).board(),0,0,Colour.WHITE);
+        Queen black = new Queen(new Board(false),0,0,Colour.BLACK);
+        Queen white = new Queen(new Board(false),0,0,Colour.WHITE);
         assertEquals("♛",black.toString());
         assertEquals("♕",white.toString());
     }

@@ -1,5 +1,6 @@
 package fi.jaakko.pieces;
 
+import fi.jaakko.game.Board;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class Queen extends Piece {
      * @param y nappulan y-koordinaatti
      * @param c nappulan väri
      */
-    public Queen(Piece[][] board, int x, int y, Colour c) {
+    public Queen(Board board, int x, int y, Colour c) {
         super(board, x, y, c);
     }
 
@@ -37,7 +38,7 @@ public class Queen extends Piece {
         ArrayList<int[]> moves = new ArrayList<>();
         for (int i = 1; i < 8; i++) {
             if (condition(i, i)) {
-                if (super.getBoard()[super.getX() + i][super.getY() + i].getColour() != super.getColour()) {
+                if (super.getBoard().board()[super.getX() + i][super.getY() + i].getColour() != super.getColour()) {
                     moves.add(new int[]{super.getX() + i, super.getY() + i});
                 }
                 break;
@@ -45,7 +46,7 @@ public class Queen extends Piece {
         }
         for (int i = 1; i < 8; i++) {
             if (condition(-1 * i, i)) {
-                if (super.getBoard()[super.getX() - i][super.getY() + i].getColour() != super.getColour()) {
+                if (super.getBoard().board()[super.getX() - i][super.getY() + i].getColour() != super.getColour()) {
                     moves.add(new int[]{super.getX() - i, super.getY() + i});
                 }
                 break;
@@ -53,7 +54,7 @@ public class Queen extends Piece {
         }
         for (int i = 1; i < 8; i++) {
             if (condition(i, -1 * i)) {
-                if (super.getBoard()[super.getX() + i][super.getY() - i].getColour() != super.getColour()) {
+                if (super.getBoard().board()[super.getX() + i][super.getY() - i].getColour() != super.getColour()) {
                     moves.add(new int[]{super.getX() + i, super.getY() - i});
                 }
                 break;
@@ -61,7 +62,7 @@ public class Queen extends Piece {
         }
         for (int i = 1; i < 8; i++) {
             if (condition(-1 * i, -1 * i)) {
-                if (super.getBoard()[super.getX() - i][super.getY() - i].getColour() != super.getColour()) {
+                if (super.getBoard().board()[super.getX() - i][super.getY() - i].getColour() != super.getColour()) {
                     moves.add(new int[]{super.getX() - i, super.getY() - i});
                 }
                 break;
@@ -69,7 +70,7 @@ public class Queen extends Piece {
         }
         for (int i = 1; i < 8; i++) {
             if (condition(i, 0)) {
-                if (super.getBoard()[super.getX() + i][super.getY()].getColour() != super.getColour()) {
+                if (super.getBoard().board()[super.getX() + i][super.getY()].getColour() != super.getColour()) {
                     moves.add(new int[]{super.getX() + i, super.getY()});
                 }
                 break;
@@ -77,7 +78,7 @@ public class Queen extends Piece {
         }
         for (int i = 1; i < 8; i++) {
             if (condition(-1 * i, 0)) {
-                if (super.getBoard()[super.getX() - i][super.getY()].getColour() != super.getColour()) {
+                if (super.getBoard().board()[super.getX() - i][super.getY()].getColour() != super.getColour()) {
                     moves.add(new int[]{super.getX() - i, super.getY()});
                 }
                 break;
@@ -85,7 +86,7 @@ public class Queen extends Piece {
         }
         for (int i = 1; i < 8; i++) {
             if (condition(0, i)) {
-                if (super.getBoard()[super.getX()][super.getY() + i].getColour() != super.getColour()) {
+                if (super.getBoard().board()[super.getX()][super.getY() + i].getColour() != super.getColour()) {
                     moves.add(new int[]{super.getX(), super.getY() + i});
                 }
                 break;
@@ -93,7 +94,7 @@ public class Queen extends Piece {
         }
         for (int i = 1; i < 8; i++) {
             if (condition(0, -1 * i)) {
-                if (super.getBoard()[super.getX()][super.getY() - i].getColour() != super.getColour()) {
+                if (super.getBoard().board()[super.getX()][super.getY() - i].getColour() != super.getColour()) {
                     moves.add(new int[]{super.getX(), super.getY() - i});
                 }
                 break;
@@ -104,7 +105,7 @@ public class Queen extends Piece {
 
     private boolean condition(int dx, int dy) {
         if (((super.getX() + dx) <= 7) && ((super.getX() + dx) >= 0) && ((super.getY() + dy) <= 7) && ((super.getY() + dy) >= 0)) {
-            return super.getBoard()[(super.getX() + dx)][(super.getY() + dy)] != null;
+            return super.getBoard().board()[(super.getX() + dx)][(super.getY() + dy)] != null;
         } else {
             return false;
         }
@@ -119,7 +120,7 @@ public class Queen extends Piece {
         ArrayList<int[]> moves = new ArrayList<>();
         for (int i = 1; i < 8; i++) {
             if (super.getX() + i <= 7 && super.getY() + i <= 7) {
-                if (super.getBoard()[super.getX() + i][super.getY() + i] == null) {
+                if (super.getBoard().board()[super.getX() + i][super.getY() + i] == null) {
                     moves.add(new int[]{super.getX() + i, super.getY() + i});
                 } else {
                     break;
@@ -128,7 +129,7 @@ public class Queen extends Piece {
         }
         for (int i = 1; i < 8; i++) {
             if (super.getX() - i >= 0 && super.getY() + i <= 7) {
-                if (super.getBoard()[super.getX() - i][super.getY() + i] == null) {
+                if (super.getBoard().board()[super.getX() - i][super.getY() + i] == null) {
                     moves.add(new int[]{super.getX() - i, super.getY() + i});
                 } else {
                     break;
@@ -137,7 +138,7 @@ public class Queen extends Piece {
         }
         for (int i = 1; i < 8; i++) {
             if (super.getX() + i <= 7 && super.getY() - i >= 0) {
-                if (super.getBoard()[super.getX() + i][super.getY() - i] == null) {
+                if (super.getBoard().board()[super.getX() + i][super.getY() - i] == null) {
                     moves.add(new int[]{super.getX() + i, super.getY() - i});
                 } else {
                     break;
@@ -146,7 +147,7 @@ public class Queen extends Piece {
         }
         for (int i = 1; i < 8; i++) {
             if (super.getX() - i >= 0 && super.getY() - i >= 0) {
-                if (super.getBoard()[super.getX() - i][super.getY() - i] == null) {
+                if (super.getBoard().board()[super.getX() - i][super.getY() - i] == null) {
                     moves.add(new int[]{super.getX() - i, super.getY() - i});
                 } else {
                     break;
@@ -154,28 +155,28 @@ public class Queen extends Piece {
             }
         }
         for (int i = Math.min(super.getX() + 1, 7); i < 8; i++) {
-            if (super.getBoard()[i][super.getY()] != null) {
+            if (super.getBoard().board()[i][super.getY()] != null) {
                 break;
             } else {
                 moves.add(new int[]{i, super.getY()});
             }
         }
         for (int i = Math.max(super.getX() - 1, 0); i >= 0; i--) {
-            if (super.getBoard()[i][super.getY()] != null) {
+            if (super.getBoard().board()[i][super.getY()] != null) {
                 break;
             } else {
                 moves.add(new int[]{i, super.getY()});
             }
         }
         for (int i = Math.min(super.getY() + 1, 7); i < 8; i++) {
-            if (super.getBoard()[super.getX()][i] != null) {
+            if (super.getBoard().board()[super.getX()][i] != null) {
                 break;
             } else {
                 moves.add(new int[]{super.getX(), i});
             }
         }
         for (int i = Math.max(super.getY() - 1, 0); i >= 0; i--) {
-            if (super.getBoard()[super.getX()][i] != null) {
+            if (super.getBoard().board()[super.getX()][i] != null) {
                 break;
             } else {
                 moves.add(new int[]{super.getX(), i});

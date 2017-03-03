@@ -16,7 +16,7 @@ public class KnightTest {
     @Before
     public void setUp() {
         board = new Board(false);
-        knight = new Knight(board.board(), 3, 3, Colour.WHITE);
+        knight = new Knight(board, 3, 3, Colour.WHITE);
         board.addPiece(knight);
     }
 
@@ -27,27 +27,27 @@ public class KnightTest {
 
     @Test
     public void captureEiSamanvarista() {
-        board.addPiece(new Knight(board.board(), 5, 4, Colour.WHITE));
-        board.addPiece(new Knight(board.board(), 4, 5, Colour.WHITE));
-        board.addPiece(new Knight(board.board(), 5, 2, Colour.WHITE));
-        board.addPiece(new Knight(board.board(), 4, 1, Colour.WHITE));
-        board.addPiece(new Knight(board.board(), 2, 1, Colour.WHITE));
-        board.addPiece(new Knight(board.board(), 1, 2, Colour.WHITE));
-        board.addPiece(new Knight(board.board(), 2, 5, Colour.WHITE));
-        board.addPiece(new Knight(board.board(), 1, 4, Colour.WHITE));
+        board.addPiece(new Knight(board, 5, 4, Colour.WHITE));
+        board.addPiece(new Knight(board, 4, 5, Colour.WHITE));
+        board.addPiece(new Knight(board, 5, 2, Colour.WHITE));
+        board.addPiece(new Knight(board, 4, 1, Colour.WHITE));
+        board.addPiece(new Knight(board, 2, 1, Colour.WHITE));
+        board.addPiece(new Knight(board, 1, 2, Colour.WHITE));
+        board.addPiece(new Knight(board, 2, 5, Colour.WHITE));
+        board.addPiece(new Knight(board, 1, 4, Colour.WHITE));
         assertTrue(knight.capture().isEmpty());
     }
 
     @Test
     public void captureToimiiNormaalisti() {
-        board.addPiece(new Knight(board.board(), 5, 4, Colour.BLACK));
-        board.addPiece(new Knight(board.board(), 4, 5, Colour.BLACK));
-        board.addPiece(new Knight(board.board(), 5, 2, Colour.BLACK));
-        board.addPiece(new Knight(board.board(), 4, 1, Colour.BLACK));
-        board.addPiece(new Knight(board.board(), 2, 1, Colour.BLACK));
-        board.addPiece(new Knight(board.board(), 1, 2, Colour.BLACK));
-        board.addPiece(new Knight(board.board(), 2, 5, Colour.BLACK));
-        board.addPiece(new Knight(board.board(), 1, 4, Colour.BLACK));
+        board.addPiece(new Knight(board, 5, 4, Colour.BLACK));
+        board.addPiece(new Knight(board, 4, 5, Colour.BLACK));
+        board.addPiece(new Knight(board, 5, 2, Colour.BLACK));
+        board.addPiece(new Knight(board, 4, 1, Colour.BLACK));
+        board.addPiece(new Knight(board, 2, 1, Colour.BLACK));
+        board.addPiece(new Knight(board, 1, 2, Colour.BLACK));
+        board.addPiece(new Knight(board, 2, 5, Colour.BLACK));
+        board.addPiece(new Knight(board, 1, 4, Colour.BLACK));
         assertTrue(knight.capture().stream().anyMatch(i -> i[0] == 5 && i[1] == 4));
         assertTrue(knight.capture().stream().anyMatch(i -> i[0] == 4 && i[1] == 5));
         assertTrue(knight.capture().stream().anyMatch(i -> i[0] == 5 && i[1] == 2));
@@ -60,8 +60,8 @@ public class KnightTest {
 
     @Test
     public void eiMeneRajojenYli() {
-        Knight k1 = new Knight(board.board(), 1, 1, Colour.WHITE);
-        Knight k2 = new Knight(board.board(), 7, 7, Colour.WHITE);
+        Knight k1 = new Knight(board, 1, 1, Colour.WHITE);
+        Knight k2 = new Knight(board, 7, 7, Colour.WHITE);
         assertFalse(k1.moves().stream().anyMatch(i -> i[0] < 0 || i[1] < 0 || i[0] > 7 || i[1] > 7));
         assertFalse(k2.moves().stream().anyMatch(i -> i[0] < 0 || i[1] < 0 || i[0] > 7 || i[1] > 7));
     }
@@ -75,8 +75,8 @@ public class KnightTest {
 
     @Test
     public void testToString() {
-        Knight black = new Knight(new Board(false).board(),0,0,Colour.BLACK);
-        Knight white = new Knight(new Board(false).board(),0,0,Colour.WHITE);
+        Knight black = new Knight(new Board(false),0,0,Colour.BLACK);
+        Knight white = new Knight(new Board(false),0,0,Colour.WHITE);
         assertEquals("♞",black.toString());
         assertEquals("♘",white.toString());
     }

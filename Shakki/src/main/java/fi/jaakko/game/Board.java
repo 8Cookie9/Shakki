@@ -23,26 +23,26 @@ public class Board {
 
     private void setup() { //laittaa pelinappulat alkuasemiin
         for (int i = 0; i < 8; i++) {
-            this.addPiece(new Pawn(this.board(), i, 6, Colour.BLACK));
-            this.addPiece(new Pawn(this.board(), i, 1, Colour.WHITE));
+            this.addPiece(new Pawn(this, i, 6, Colour.BLACK));
+            this.addPiece(new Pawn(this, i, 1, Colour.WHITE));
         }
         Piece b;
-        this.addPiece(new Rook(this.board(), 0, 0, Colour.WHITE));
-        this.addPiece(new Rook(this.board(), 7, 0, Colour.WHITE));
-        this.addPiece(new Knight(this.board(), 1, 0, Colour.WHITE));
-        this.addPiece(new Knight(this.board(), 6, 0, Colour.WHITE));
-        this.addPiece(new Bishop(this.board(), 2, 0, Colour.WHITE));
-        this.addPiece(new Bishop(this.board(), 5, 0, Colour.WHITE));
-        this.addPiece(new Queen(this.board(), 3, 0, Colour.WHITE));
-        this.addPiece(new King(this.board(), 4, 0, Colour.WHITE));
-        this.addPiece(new Rook(this.board(), 0, 7, Colour.BLACK));
-        this.addPiece(new Rook(this.board(), 7, 7, Colour.BLACK));
-        this.addPiece(new Knight(this.board(), 1, 7, Colour.BLACK));
-        this.addPiece(new Knight(this.board(), 6, 7, Colour.BLACK));
-        this.addPiece(new Bishop(this.board(), 2, 7, Colour.BLACK));
-        this.addPiece(new Bishop(this.board(), 5, 7, Colour.BLACK));
-        this.addPiece(new Queen(this.board(), 3, 7, Colour.BLACK));
-        this.addPiece(new King(this.board(), 4, 7, Colour.BLACK));
+        this.addPiece(new Rook(this, 0, 0, Colour.WHITE));
+        this.addPiece(new Rook(this, 7, 0, Colour.WHITE));
+        this.addPiece(new Knight(this, 1, 0, Colour.WHITE));
+        this.addPiece(new Knight(this, 6, 0, Colour.WHITE));
+        this.addPiece(new Bishop(this, 2, 0, Colour.WHITE));
+        this.addPiece(new Bishop(this, 5, 0, Colour.WHITE));
+        this.addPiece(new Queen(this, 3, 0, Colour.WHITE));
+        this.addPiece(new King(this, 4, 0, Colour.WHITE));
+        this.addPiece(new Rook(this, 0, 7, Colour.BLACK));
+        this.addPiece(new Rook(this, 7, 7, Colour.BLACK));
+        this.addPiece(new Knight(this, 1, 7, Colour.BLACK));
+        this.addPiece(new Knight(this, 6, 7, Colour.BLACK));
+        this.addPiece(new Bishop(this, 2, 7, Colour.BLACK));
+        this.addPiece(new Bishop(this, 5, 7, Colour.BLACK));
+        this.addPiece(new Queen(this, 3, 7, Colour.BLACK));
+        this.addPiece(new King(this, 4, 7, Colour.BLACK));
     }
 
     /**
@@ -83,9 +83,9 @@ public class Board {
         this.board[x][y].move(x2, y2);
         this.board[x2][y2] = this.board[x][y];
         this.board[x][y] = null;
-        if (this.board[x2][y2].getClass() == new Pawn(new Board(false).board(), 0, 0, Colour.BLACK).getClass()) {
+        if (this.board[x2][y2].getClass() == new Pawn(new Board(false), 0, 0, Colour.BLACK).getClass()) {
             if ((this.board[x2][y2].getColour() == Colour.BLACK && y2 == 0) || (this.board[x2][y2].getColour() == Colour.WHITE && y2 == 7)) {
-                this.board[x2][y2] = new Queen(this.board(), x2, y2, this.board[x2][y2].getColour());
+                this.board[x2][y2] = new Queen(this, x2, y2, this.board[x2][y2].getColour());
             }
         }
         return true;
@@ -127,6 +127,14 @@ public class Board {
             }
         }
         return white;
+    }
+    
+    public List<Piece> getOtherColoredPieces(Colour c){
+        if(c==Colour.WHITE){
+            return this.getBlackPieces();
+        }else{
+            return this.getWhitePieces();
+        }
     }
 
     /**

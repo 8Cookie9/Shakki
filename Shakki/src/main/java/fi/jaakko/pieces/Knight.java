@@ -1,5 +1,6 @@
 package fi.jaakko.pieces;
 
+import fi.jaakko.game.Board;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +17,7 @@ public class Knight extends Piece {
      * @param y nappulan y-koordinaatti
      * @param c nappulan väri
      */
-    public Knight(Piece[][] board, int x, int y, Colour c) {
+    public Knight(Board board, int x, int y, Colour c) {
         super(board, x, y, c);
         this.listMoves();
     }
@@ -44,8 +45,8 @@ public class Knight extends Piece {
         listMoves();
         return this.mv.stream()
                 .filter(i -> i[0] >= 0 && i[0] <= 7 && i[1] >= 0 && i[1] <= 7)
-                .filter(i -> super.getBoard()[i[0]][i[1]] != null)
-                .filter(i -> super.getBoard()[i[0]][i[1]].getColour() != super.getColour())
+                .filter(i -> super.getBoard().board()[i[0]][i[1]] != null)
+                .filter(i -> super.getBoard().board()[i[0]][i[1]].getColour() != super.getColour())
                 .collect(Collectors.toList());
     }
 
@@ -59,7 +60,7 @@ public class Knight extends Piece {
         listMoves();
         return this.mv.stream()
                 .filter(i -> i[0] >= 0 && i[0] <= 7 && i[1] >= 0 && i[1] <= 7)
-                .filter(i -> super.getBoard()[i[0]][i[1]] == null)
+                .filter(i -> super.getBoard().board()[i[0]][i[1]] == null)
                 .collect(Collectors.toList());
     }
 

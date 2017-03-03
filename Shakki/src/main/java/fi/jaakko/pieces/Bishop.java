@@ -1,5 +1,6 @@
 package fi.jaakko.pieces;
 
+import fi.jaakko.game.Board;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class Bishop extends Piece {
      * @param y nappulan y-koordinaatti
      * @param c nappulan väri
      */
-    public Bishop(Piece[][] board, int x, int y, Colour c) {
+    public Bishop(Board board, int x, int y, Colour c) {
         super(board, x, y, c);
     }
 
@@ -40,8 +41,8 @@ public class Bishop extends Piece {
         ArrayList<int[]> moves = new ArrayList<>();
         for (int i = 1; i < 8; i++) { //yläoikealle
             if (super.getX() + i <= 7 && super.getY() + i <= 7) {
-                if (super.getBoard()[super.getX() + i][super.getY() + i] != null) {
-                    if (super.getBoard()[super.getX() + i][super.getY() + i].getColour() != super.getColour()) {
+                if (super.getBoard().board()[super.getX() + i][super.getY() + i] != null) {
+                    if (super.getBoard().board()[super.getX() + i][super.getY() + i].getColour() != super.getColour()) {
                         moves.add(new int[]{super.getX() + i, super.getY() + i});
                     }
                     break;
@@ -50,8 +51,8 @@ public class Bishop extends Piece {
         }
         for (int i = 1; i < 8; i++) { //ylävasemmalle
             if (super.getX() - i >= 0 && super.getY() + i <= 7) {
-                if (super.getBoard()[super.getX() - i][super.getY() + i] != null) {
-                    if (super.getBoard()[super.getX() - i][super.getY() + i].getColour() != super.getColour()) {
+                if (super.getBoard().board()[super.getX() - i][super.getY() + i] != null) {
+                    if (super.getBoard().board()[super.getX() - i][super.getY() + i].getColour() != super.getColour()) {
                         moves.add(new int[]{super.getX() - i, super.getY() + i});
                     }
                     break;
@@ -60,8 +61,8 @@ public class Bishop extends Piece {
         }
         for (int i = 1; i < 8; i++) { //alaoikealle
             if (super.getX() + i <= 7 && super.getY() - i >= 0) {
-                if (super.getBoard()[super.getX() + i][super.getY() - i] != null) {
-                    if (super.getBoard()[super.getX() + i][super.getY() - i].getColour() != super.getColour()) {
+                if (super.getBoard().board()[super.getX() + i][super.getY() - i] != null) {
+                    if (super.getBoard().board()[super.getX() + i][super.getY() - i].getColour() != super.getColour()) {
                         moves.add(new int[]{super.getX() + i, super.getY() - i});
                     }
                     break;
@@ -70,8 +71,8 @@ public class Bishop extends Piece {
         }
         for (int i = 1; i < 8; i++) { //alavasemmalle
             if (super.getX() - i >= 0 && super.getY() - i >= 0) {
-                if (super.getBoard()[super.getX() - i][super.getY() - i] != null) {
-                    if (super.getBoard()[super.getX() - i][super.getY() - i].getColour() != super.getColour()) {
+                if (super.getBoard().board()[super.getX() - i][super.getY() - i] != null) {
+                    if (super.getBoard().board()[super.getX() - i][super.getY() - i].getColour() != super.getColour()) {
                         moves.add(new int[]{super.getX() - i, super.getY() - i});
                     }
                     break;
@@ -91,7 +92,7 @@ public class Bishop extends Piece {
         ArrayList<int[]> moves = new ArrayList<>();
         for (int i = 1; i < 8; i++) { //yläoikealle
             if (super.getX() + i <= 7 && super.getY() + i <= 7) {
-                if (super.getBoard()[super.getX() + i][super.getY() + i] == null) {
+                if (super.getBoard().board()[super.getX() + i][super.getY() + i] == null) {
                     moves.add(new int[]{super.getX() + i, super.getY() + i});
                 } else {
                     break;
@@ -100,7 +101,7 @@ public class Bishop extends Piece {
         }
         for (int i = 1; i < 8; i++) { //ylävasemmalle
             if (super.getX() - i >= 0 && super.getY() + i <= 7) {
-                if (super.getBoard()[super.getX() - i][super.getY() + i] == null) {
+                if (super.getBoard().board()[super.getX() - i][super.getY() + i] == null) {
                     moves.add(new int[]{super.getX() - i, super.getY() + i});
                 } else {
                     break;
@@ -109,7 +110,7 @@ public class Bishop extends Piece {
         }
         for (int i = 1; i < 8; i++) { //alaoikealle
             if (super.getX() + i <= 7 && super.getY() - i >= 0) {
-                if (super.getBoard()[super.getX() + i][super.getY() - i] == null) {
+                if (super.getBoard().board()[super.getX() + i][super.getY() - i] == null) {
                     moves.add(new int[]{super.getX() + i, super.getY() - i});
                 } else {
                     break;
@@ -118,7 +119,7 @@ public class Bishop extends Piece {
         }
         for (int i = 1; i < 8; i++) { //alavasemmalle
             if (super.getX() - i >= 0 && super.getY() - i >= 0) {
-                if (super.getBoard()[super.getX() - i][super.getY() - i] == null) {
+                if (super.getBoard().board()[super.getX() - i][super.getY() - i] == null) {
                     moves.add(new int[]{super.getX() - i, super.getY() - i});
                 } else {
                     break;
