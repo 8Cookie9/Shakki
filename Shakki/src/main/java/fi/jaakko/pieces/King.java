@@ -117,7 +117,10 @@ public class King extends Piece {
                     private ArrayList<int[]> mv;
                     @Override
                     public List<int[]> moves() {
-                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                        ArrayList<int[]> moves = new ArrayList<>();
+                        moves.addAll(this.regularMoves());
+                        moves.addAll(this.capture());
+                        return moves;
                     }
 
                     @Override

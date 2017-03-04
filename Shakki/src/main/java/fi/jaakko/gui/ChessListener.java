@@ -1,6 +1,7 @@
 package fi.jaakko.gui;
 
 import fi.jaakko.game.Game;
+import fi.jaakko.pieces.Colour;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
@@ -23,6 +24,8 @@ public class ChessListener implements MouseListener {
     private Container container;
     private List<int[]> regularMoves;
     private List<int[]> capture;
+    private boolean checkmate;
+    private boolean check;
     
     /**
      * Luo uuden kuuntelijan hiiren painalluksi varten.
@@ -35,6 +38,8 @@ public class ChessListener implements MouseListener {
         this.container = container;
         this.capture = new ArrayList<>();
         this.regularMoves = new ArrayList<>();
+        this.check=false;
+        this.checkmate=false;
     }
 
     @Override
@@ -43,14 +48,25 @@ public class ChessListener implements MouseListener {
         int x = Integer.parseInt(values[0]);
         int y = Integer.parseInt(values[1]);
         if (this.chosen) {
-            if (this.game.getBoard().board()[this.chosenX][this.chosenY].moves().stream().anyMatch(i -> i[0] == x && i[1] == y)) {
+            if (check&&(this.game.getMoves(this.chosenX, this.chosenY).stream().anyMatch(i -> i[0] == x && i[1] == y))) {
                 if (this.game.tryMove(this.chosenX, this.chosenY, x, y)) {
+                    this.check=this.game.check(this.game.getCurrentColour());
+                    this.checkmate=this.game.checkmate(this.game.getCurrentColour());
                     this.game.nextTurn();
                     this.regularMoves = new ArrayList<>();
                     this.capture = new ArrayList<>();
                     this.chosen = false;
                 }
-            } else {
+            }else if(this.game.getBoard().board()[this.chosenX][this.chosenY].moves().stream().anyMatch(i -> i[0] == x && i[1] == y)){
+                if (this.game.tryMove(this.chosenX, this.chosenY, x, y)) {
+                    this.check=this.game.check(this.game.getCurrentColour());
+                    this.checkmate=this.game.checkmate(this.game.getCurrentColour());
+                    this.game.nextTurn();
+                    this.regularMoves = new ArrayList<>();
+                    this.capture = new ArrayList<>();
+                    this.chosen = false;
+                }
+            }else {
                 this.chosen = false;
                 this.regularMoves = new ArrayList<>();
                 this.capture = new ArrayList<>();
@@ -83,19 +99,27 @@ public class ChessListener implements MouseListener {
                 label.setOpaque(true);
                 int x2 = x1;
                 int y2 = y1;
-                if (this.chosenX == x2 && this.chosenY == y2 && this.chosen) {
-                    label.setBackground(Color.yellow);
-                } else if (this.capture.stream().anyMatch(i -> i[0] == x2 && i[1] == y2)) {
-                    label.setBackground(Color.red);
-                } else if (this.regularMoves.stream().anyMatch(i -> i[0] == x2 && i[1] == y2)) {
-                    label.setBackground(Color.green);
-                } else {
-                    if (this.game.getBoard().board()[x1][y1] != null) {
-                        if (this.game.getBoard().board()[x1][y1].getColour() == this.game.getCurrentColour()) {
-                            if (y1 % 2 == x1 % 2) {
-                                label.setBackground(new Color(200, 200, 150));
+                if(!check){
+                    if (this.chosenX == x2 && this.chosenY == y2 && this.chosen) {
+                        label.setBackground(Color.yellow);
+                    } else if (this.capture.stream().anyMatch(i -> i[0] == x2 && i[1] == y2)) {
+                        label.setBackground(Color.red);
+                    } else if (this.regularMoves.stream().anyMatch(i -> i[0] == x2 && i[1] == y2)) {
+                        label.setBackground(Color.green);
+                    } else {
+                        if (this.game.getBoard().board()[x1][y1] != null) {
+                            if (this.game.getBoard().board()[x1][y1].getColour() == this.game.getCurrentColour()) {
+                                if (y1 % 2 == x1 % 2) {
+                                    label.setBackground(new Color(200, 200, 150));
+                                } else {
+                                    label.setBackground(new Color(230, 230, 180));
+                                }
                             } else {
-                                label.setBackground(new Color(230, 230, 180));
+                                if (y1 % 2 == x1 % 2) {
+                                    label.setBackground(Color.lightGray);
+                                } else {
+                                    label.setBackground(Color.white);
+                                }
                             }
                         } else {
                             if (y1 % 2 == x1 % 2) {
@@ -104,11 +128,35 @@ public class ChessListener implements MouseListener {
                                 label.setBackground(Color.white);
                             }
                         }
+                    }
+                }else{
+                    if (this.chosenX == x2 && this.chosenY == y2 && this.chosen) {
+                        label.setBackground(Color.yellow);
+                    } else if (this.capture.stream().anyMatch(i -> i[0] == x2 && i[1] == y2)&&this.game.getMoves(x, y).stream().anyMatch(i -> i[0] == x2 && i[1] == y2)) {
+                        label.setBackground(Color.red);
+                    } else if (this.regularMoves.stream().anyMatch(i -> i[0] == x2 && i[1] == y2)&&this.game.getMoves(x, y).stream().anyMatch(i -> i[0] == x2 && i[1] == y2)) {
+                        label.setBackground(Color.green);
                     } else {
-                        if (y1 % 2 == x1 % 2) {
-                            label.setBackground(Color.lightGray);
+                        if (this.game.getBoard().board()[x1][y1] != null) {
+                            if (this.game.getBoard().board()[x1][y1].getColour() == this.game.getCurrentColour()) {
+                                if (y1 % 2 == x1 % 2) {
+                                    label.setBackground(new Color(200, 200, 150));
+                                } else {
+                                    label.setBackground(new Color(230, 230, 180));
+                                }
+                            } else {
+                                if (y1 % 2 == x1 % 2) {
+                                    label.setBackground(Color.lightGray);
+                                } else {
+                                    label.setBackground(Color.white);
+                                }
+                            }
                         } else {
-                            label.setBackground(Color.white);
+                            if (y1 % 2 == x1 % 2) {
+                                label.setBackground(Color.lightGray);
+                            } else {
+                                label.setBackground(Color.white);
+                            }
                         }
                     }
                 }
@@ -119,8 +167,22 @@ public class ChessListener implements MouseListener {
                 container.add(label);
             }
         }
-        if (this.game.gameOver()) {
-            JOptionPane.showMessageDialog(container, game.getWinner().col() + " voitti pelin, paina 'ok' aloittaaksesi uuden pelin.");
+        if(this.checkmate){
+            Colour col;
+            if(this.game.getCurrentColour()==Colour.BLACK){
+                col=Colour.WHITE;
+            }else{
+                col=Colour.BLACK;
+            }
+            JOptionPane.showMessageDialog(container, col.col() + " voitti pelin, paina 'ok' aloittaaksesi uuden pelin.");
+            this.check=false;
+            this.checkmate=false;
+            this.game.newGame();
+            this.mouseClicked(e);
+        }else if(this.game.gameOver()){
+            JOptionPane.showMessageDialog(container, this.game.getWinner().col() + " voitti pelin, paina 'ok' aloittaaksesi uuden pelin.");
+            this.check=false;
+            this.checkmate=false;
             this.game.newGame();
             this.mouseClicked(e);
         }

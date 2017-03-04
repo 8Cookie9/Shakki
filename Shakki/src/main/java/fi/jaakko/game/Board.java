@@ -136,7 +136,14 @@ public class Board {
             return this.getWhitePieces();
         }
     }
-
+    
+    public List<Piece> getSameColoredPieces(Colour c){
+        if(c==Colour.BLACK){
+            return this.getBlackPieces();
+        }else{
+            return this.getWhitePieces();
+        }
+    }
     /**
      * Palauttaa kaikki nappulat listana.
      *
