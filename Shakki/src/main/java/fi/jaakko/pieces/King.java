@@ -21,11 +21,6 @@ public class King extends Piece {
         super(board, x, y, c);
     }
 
-    /**
-     * Kaikki sallitut siirrot.
-     *
-     * @return kaikki sallitut siirrot
-     */
     @Override
     public List<int[]> moves() {
         ArrayList<int[]> moves = new ArrayList<>();
@@ -34,11 +29,6 @@ public class King extends Piece {
         return moves;
     }
 
-    /**
-     * Siirrot, joilla kaapataan toinen nappula.
-     *
-     * @return kaikki toisen napin kaappaavat siirrot
-     */
     @Override
     public List<int[]> capture() {
         listMoves();
@@ -49,29 +39,24 @@ public class King extends Piece {
                 .filter(i -> super.getBoard().board()[i[0]][i[1]] != null)
                 .filter(i -> super.getBoard().board()[i[0]][i[1]].getColour() != super.getColour())
                 .collect(Collectors.toList());
-        for(int[] i:mvs){
-            newGame=testBoard();
-            newGame.board()[i[0]][i[1]]=null;
-            newGame.addPiece(new King(newGame,i[0],i[1],super.getColour()));
-            boolean b=true;
-            for(Piece p:newGame.getOtherColoredPieces(super.getColour())){
-                if(p.capture().stream().anyMatch(a -> a[0]==i[0]&&a[1]==i[1])){
-                    b=false;
+        for (int[] i : mvs) {
+            newGame = testBoard();
+            newGame.board()[i[0]][i[1]] = null;
+            newGame.addPiece(new King(newGame, i[0], i[1], super.getColour()));
+            boolean b = true;
+            for (Piece p : newGame.getOtherColoredPieces(super.getColour())) {
+                if (p.capture().stream().anyMatch(a -> a[0] == i[0] && a[1] == i[1])) {
+                    b = false;
                     break;
                 }
             }
-            if(b){
+            if (b) {
                 moves.add(i);
             }
         }
         return moves;
     }
 
-    /**
-     * Siirror, joilla ainoastaan liikutaan.
-     *
-     * @return kaikki siirrot, joilla vain liikutaan
-     */
     @Override
     public List<int[]> regularMoves() {
         listMoves();
@@ -81,85 +66,44 @@ public class King extends Piece {
                 .filter(i -> i[0] >= 0 && i[0] <= 7 && i[1] >= 0 && i[1] <= 7)
                 .filter(i -> super.getBoard().board()[i[0]][i[1]] == null)
                 .collect(Collectors.toList());
-        for(int[] i:mvs){
-            newGame=testBoard();
-            newGame.board()[i[0]][i[1]]=null;
-            newGame.addPiece(new King(newGame,i[0],i[1],super.getColour()));
-            boolean b=true;
-            for(Piece p:newGame.getOtherColoredPieces(super.getColour())){
-                if(p.capture().stream().anyMatch(a -> a[0]==i[0]&&a[1]==i[1])){
-                    b=false;
+        for (int[] i : mvs) {
+            newGame = testBoard();
+            newGame.board()[i[0]][i[1]] = null;
+            newGame.addPiece(new King(newGame, i[0], i[1], super.getColour()));
+            boolean b = true;
+            for (Piece p : newGame.getOtherColoredPieces(super.getColour())) {
+                if (p.capture().stream().anyMatch(a -> a[0] == i[0] && a[1] == i[1])) {
+                    b = false;
                     break;
                 }
             }
-            if(b){
+            if (b) {
                 moves.add(i);
             }
         }
         return moves;
     }
-    
-    private Board testBoard(){
-        Board newGame=new Board(false);
-        for(Piece p:super.getBoard().getAllPieces()){
-            if(p.getClass()==new Pawn(new Board(false),0,0,Colour.BLACK).getClass()){
+
+    private Board testBoard() {
+        Board newGame = new Board(false);
+        for (Piece p : super.getBoard().getAllPieces()) {
+            if (p.getClass() == new Pawn(new Board(false), 0, 0, Colour.BLACK).getClass()) {
                 newGame.addPiece(new Pawn(newGame, p.getX(), p.getY(), p.getColour()));
-            }else if(p.getClass()==new Rook(new Board(false),0,0,Colour.BLACK).getClass()){
+            } else if (p.getClass() == new Rook(new Board(false), 0, 0, Colour.BLACK).getClass()) {
                 newGame.addPiece(new Rook(newGame, p.getX(), p.getY(), p.getColour()));
-            }else if(p.getClass()==new Knight(new Board(false),0,0,Colour.BLACK).getClass()){
+            } else if (p.getClass() == new Knight(new Board(false), 0, 0, Colour.BLACK).getClass()) {
                 newGame.addPiece(new Knight(newGame, p.getX(), p.getY(), p.getColour()));
-            }else if(p.getClass()==new Bishop(new Board(false),0,0,Colour.BLACK).getClass()){
+            } else if (p.getClass() == new Bishop(new Board(false), 0, 0, Colour.BLACK).getClass()) {
                 newGame.addPiece(new Bishop(newGame, p.getX(), p.getY(), p.getColour()));
-            }else if(p.getClass()==new Queen(new Board(false),0,0,Colour.BLACK).getClass()){
+            } else if (p.getClass() == new Queen(new Board(false), 0, 0, Colour.BLACK).getClass()) {
                 newGame.addPiece(new Queen(newGame, p.getX(), p.getY(), p.getColour()));
-            }else if(p.getClass()==new King(new Board(false),0,0,Colour.BLACK).getClass()&&p.getColour()!=this.getColour()){
-                newGame.addPiece(new Piece(newGame, p.getX(), p.getY(), p.getColour()) {
-                    private ArrayList<int[]> mv;
-                    @Override
-                    public List<int[]> moves() {
-                        ArrayList<int[]> moves = new ArrayList<>();
-                        moves.addAll(this.regularMoves());
-                        moves.addAll(this.capture());
-                        return moves;
-                    }
-
-                    @Override
-                    public List<int[]> regularMoves() {
-                        listMoves();
-                        return this.mv.stream()
-                            .filter(i -> i[0] >= 0 && i[0] <= 7 && i[1] >= 0 && i[1] <= 7)
-                            .filter(i -> super.getBoard().board()[i[0]][i[1]] == null)
-                            .collect(Collectors.toList());
-                    }
-
-                    @Override
-                    public List<int[]> capture() {
-                        listMoves();
-                        return this.mv.stream()
-                            .filter(i -> i[0] >= 0 && i[0] <= 7 && i[1] >= 0 && i[1] <= 7)
-                            .filter(i -> super.getBoard().board()[i[0]][i[1]] != null)
-                            .filter(i -> super.getBoard().board()[i[0]][i[1]].getColour() != super.getColour())
-                            .collect(Collectors.toList());
-                    }
-                    
-                    private void listMoves() {
-                        mv = new ArrayList<>();
-                        mv.add(new int[]{super.getX() - 1, super.getY() + 1});
-                        mv.add(new int[]{super.getX(), super.getY() + 1});
-                        mv.add(new int[]{super.getX() + 1, super.getY() + 1});
-                        mv.add(new int[]{super.getX() + 1, super.getY()});
-                        mv.add(new int[]{super.getX() + 1, super.getY() - 1});
-                        mv.add(new int[]{super.getX(), super.getY() - 1});
-                        mv.add(new int[]{super.getX() - 1, super.getY() - 1});
-                        mv.add(new int[]{super.getX() - 1, super.getY()});
-                    }
-                    
-                });
+            } else if (p.getClass() == new King(new Board(false), 0, 0, Colour.BLACK).getClass() && p.getColour() != this.getColour()) {
+                newGame.addPiece(new TestKing(newGame, p.getX(), p.getY(), p.getColour()));
             }
         }
         return newGame;
-    }    
-    
+    }
+
     private void listMoves() {
         mv = new ArrayList<>();
         mv.add(new int[]{super.getX() - 1, super.getY() + 1});

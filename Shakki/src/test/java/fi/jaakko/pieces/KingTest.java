@@ -54,6 +54,18 @@ public class KingTest {
     }
 
     @Test
+    public void voiLiikkuaNormaalisti() {
+        assertTrue(king.moves().stream().anyMatch(i -> i[0] == 2 && i[1] == 2));
+        assertTrue(king.moves().stream().anyMatch(i -> i[0] == 3 && i[1] == 2));
+        assertTrue(king.moves().stream().anyMatch(i -> i[0] == 4 && i[1] == 2));
+        assertTrue(king.moves().stream().anyMatch(i -> i[0] == 2 && i[1] == 3));
+        assertTrue(king.moves().stream().anyMatch(i -> i[0] == 4 && i[1] == 3));
+        assertTrue(king.moves().stream().anyMatch(i -> i[0] == 2 && i[1] == 4));
+        assertTrue(king.moves().stream().anyMatch(i -> i[0] == 3 && i[1] == 4));
+        assertTrue(king.moves().stream().anyMatch(i -> i[0] == 4 && i[1] == 4));
+    }
+
+    @Test
     public void eiMeneRajojenYli() {
         King k1 = new King(board, 1, 1, Colour.WHITE);
         King k2 = new King(board, 7, 7, Colour.WHITE);
@@ -70,9 +82,9 @@ public class KingTest {
 
     @Test
     public void testToString() {
-        King black = new King(new Board(false),0,0,Colour.BLACK);
-        King white = new King(new Board(false),0,0,Colour.WHITE);
-        assertEquals("♚",black.toString());
-        assertEquals("♔",white.toString());
+        King black = new King(new Board(false), 0, 0, Colour.BLACK);
+        King white = new King(new Board(false), 0, 0, Colour.WHITE);
+        assertEquals("♚", black.toString());
+        assertEquals("♔", white.toString());
     }
 }

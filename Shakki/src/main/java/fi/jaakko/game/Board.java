@@ -128,22 +128,35 @@ public class Board {
         }
         return white;
     }
-    
-    public List<Piece> getOtherColoredPieces(Colour c){
-        if(c==Colour.WHITE){
+
+    /**
+     * Palauttaa kaikki muun väriset nappulat.
+     *
+     * @param c väri, jota ei haluta
+     * @return palauttaat muun väriset nappulat listana
+     */
+    public List<Piece> getOtherColoredPieces(Colour c) {
+        if (c == Colour.WHITE) {
             return this.getBlackPieces();
-        }else{
+        } else {
             return this.getWhitePieces();
         }
     }
-    
-    public List<Piece> getSameColoredPieces(Colour c){
-        if(c==Colour.BLACK){
+
+    /**
+     * Palauttaa kaikki saman väriset nappulat.
+     *
+     * @param c väri, jonkalaiset nappulat halutaan
+     * @return palauttaat saman väriset nappulat listana
+     */
+    public List<Piece> getSameColoredPieces(Colour c) {
+        if (c == Colour.BLACK) {
             return this.getBlackPieces();
-        }else{
+        } else {
             return this.getWhitePieces();
         }
     }
+
     /**
      * Palauttaa kaikki nappulat listana.
      *
@@ -154,5 +167,28 @@ public class Board {
         all.addAll(this.getBlackPieces());
         all.addAll(this.getWhitePieces());
         return all;
+    }
+
+    /**
+     * Pakottaa siirron säännöistä välittämättä.
+     *
+     * @param x Siirrettävän nappulan x-koordinaatti
+     * @param y Siirrettävän nappulan y-koordinaatti
+     * @param x2 X-koordinaatti, jonne nappula yritetään siirtää
+     * @param y2 Y-koordinaatti, jonne nappula yritetään siirtää
+     */
+    public void forceMove(int x, int y, int x2, int y2) {
+        if (this.board[x][y] == null) {
+            return;
+        }
+        this.board[x][y].move(x2, y2);
+        this.board[x2][y2] = this.board[x][y];
+        this.board[x][y] = null;
+        if (this.board[x2][y2].getClass() == new Pawn(new Board(false), 0, 0, Colour.BLACK).getClass()) {
+            if ((this.board[x2][y2].getColour() == Colour.BLACK && y2 == 0) || (this.board[x2][y2].getColour() == Colour.WHITE && y2 == 7)) {
+                this.board[x2][y2] = new Queen(this, x2, y2, this.board[x2][y2].getColour());
+            }
+        }
+
     }
 }
