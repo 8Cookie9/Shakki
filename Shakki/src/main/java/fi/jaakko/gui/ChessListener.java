@@ -1,7 +1,6 @@
 package fi.jaakko.gui;
 
-import fi.jaakko.game.Board;
-import fi.jaakko.game.Game;
+import fi.jaakko.game.*;
 import fi.jaakko.pieces.Colour;
 import fi.jaakko.pieces.Pawn;
 import fi.jaakko.pieces.Piece;
