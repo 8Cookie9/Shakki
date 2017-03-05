@@ -9,4 +9,8 @@ Päivä | Tunnit | Kuvaus
 10.02.2017 | 4h | Testejä, JavaDoc, Luokkakaavion päivittäminen, koodin parantelua
 17.02.2017 | 6h | Luokat King ja Queen, testejä, JavaDoc, Luokkakaavion päivittäminen, sekvenssikaaviot
 21.02.2017 | 5h | Graafinen käyttöliityymä toimivaksi
+24.02.2017 | 2h | Käyttöohje, testejä ym. palautukseen tarvittavaa
+03.03.2017 | 5h | Kuningasta ei enää voi siirtää vääriin paikkoihin
+04.03.2017 | 4h | Shakki ja shakkimatti toimiviksi
+05.03.2017 | 3h | Testejä, viimeistelyä
 ... | ... | ...
